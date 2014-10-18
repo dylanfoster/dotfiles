@@ -12,16 +12,9 @@ alias df 'df -h'
 alias fs 'stat -f "%z bytes"'
 
 # Directory listing
-alias k 'l'
-alias l 'ls -al'
-
-if type -P tree > /dev/null
-  alias ll 'tree --dirsfirst -aLpughDFiC 1'
-  alias lsd 'll -d'
-else
-  alias ll 'ls -al'
-  alias lsd 'CLICOLOR_FORCE=1 ll | grep --color=never "^d"'
-end
+alias l 'tree --dirsfirst -aFCNL 1 $argv'
+alias ll 'tree --dirsfirst -aLpughDFiC 1'
+alias lsd 'll -d'
 
 # Creates a new directory and enter it
 function md
