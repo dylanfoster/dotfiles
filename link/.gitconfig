@@ -1,0 +1,18 @@
+[user]
+  name = Dylan Foster
+[color]
+  ui = auto
+[core]
+  editor = /usr/local/bin/vim
+  excludesfile = ~/.gitignore
+[github]
+  user = dylan947
+[alias]
+  purr = !"git pull ––rebase"
+  pu = !"git fetch origin -v; git fetch upstream -v; git merge upstream/master"
+  ready = !"git rebase -i @{u}"
+  standup = !git-standup
+  st = !"git status -sb"
+  fc = !"git diff-tree --no-commit-id --name-only -r"
+[push]
+  default = simple

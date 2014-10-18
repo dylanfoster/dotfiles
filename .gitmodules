@@ -4,3 +4,9 @@
 [submodule "vendor/n"]
 	path = vendor/n
 	url = https://github.com/visionmedia/n
+[submodule "link/.vim/bundle/neobundle.vim"]
+	path = link/.vim/bundle/neobundle.vim
+	url = git://github.com/Shougo/neobundle.vim.git
+[submodule "vender/fish-shell"]
+	path = vender/fish-shell
+	url = git://github.com/fish-shell/fish-shell.git
