@@ -43,3 +43,10 @@ If git is not installed, it will be by Homebrew. In addtion, we'll include git-e
 Vim. That is all that needs to be said
 
 ### [Fish-shell](http://fishshell.com)
+
+## Thanks
+
+Thanks for the footwork
+
+ - Ben Truyman [dotfiles](https://github.com/bentruyman/dotfiles)
+ - Mathias Bynens [dotfiles](https://github.com/mathiasbynens/dotfiles)
