@@ -42,7 +42,7 @@ e_list() { echo -e "  \033[1;31m✖\033[0m $1"; }
 backup() {
   notice "Backing up to: $backup_dir"
   mkdir -p "$backup_dir"
-  mv "$dotfiles_dir" "$backup_dir"
+  cp -R "$dotfiles_dir" "$backup_dir"
 }
 
 header_init() { notice "Initializing environment"; }
