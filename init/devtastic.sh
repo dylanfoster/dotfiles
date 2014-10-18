@@ -2,7 +2,7 @@
 
 # Install Node.js stable
 if ! program_exists "n"; then
-  cd ~/.dotefiles/vendor/n
+  cd $HOME/.dotfiles/vendor/n
   make install
   n stable
 else
