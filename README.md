@@ -5,7 +5,7 @@ System bootstrap for OS X and Ubuntu
 
 ## Installation
 
-`bash -c "$(curl -fsSL https://raw.github.com/dylan947/dotfiles/master/bin/dotfiles)"
+`bash -c "$(curl -fsSL https://raw.github.com/dylan947/dotfiles/master/bin/dotfiles)"`
 
 
 ## Veni, vidi, vici
