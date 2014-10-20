@@ -1,5 +1,3 @@
-
-
 # Install Node.js stable
 if ! program_exists "n"; then
   cd ~/.dotefiles/vendor/n
@@ -22,29 +20,5 @@ if program_exists "npm"; then
   if [[ "$list" ]]; then
     notice "Installing Node Modules: ${list[*]}"
     npm install -g $list
-  fi
-fi
-
-# Install fish shell if it isn't already
-if ! program_exists "fish"; then
-  (
-    cd ~/.dotfiles/vendor/fish-shell
-    autoconf
-    ./configure
-    make
-    sudo make install
-  )
-fi
-
-# Set shell to fish
-if program_exists "fish"; then
-  fish_location=$(which fish)
-  if [[ ! "$(cat /etc/shells | grep "$fish_location")" ]]; then
-    echo $fish_location | sudo tee -a /etc/shells
-  fi
-
-  if [[ ! "echo $FISH_VERSION" ]]; then
-    notice "Changing shell to "$fish_location""
-    chsh -s "$fish_location"
   fi
 fi
