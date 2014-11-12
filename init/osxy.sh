@@ -42,7 +42,6 @@ if program_exists "brew"; then
     automake
     fish
     cloc
-    colortail
     git-extras
     lesspipe
     tree
