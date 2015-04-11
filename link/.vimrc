@@ -98,7 +98,7 @@ endif
 set background=dark
 
 " Draw a vertical ruler at column 80
-" execute "set colorcolumn=" . join(range(81,335), ',')
+execute "set colorcolumn=" . join(range(81,335), ',')
 
 " Highlight current line
 set cursorline
