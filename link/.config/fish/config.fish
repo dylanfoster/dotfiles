@@ -87,11 +87,6 @@ end
 alias vclean 'rm $HOME/.vim/swaps/*'
 
 ## Node.js
-if test ! -d $NVM_DIR
-  mkdir -p $NVM_DIR
-end
-. $HOME/.vendor/nvm-fish/nvm.fish
-
 function npms
   npm search --registry=https://registry.npmjs.org $argv
 end
@@ -101,7 +96,7 @@ function npm-stable
 end
 
 # Z
-. ~/.vendor/z-fish/z.fish
+. ~/.dotfiles/vendor/z-fish/z.fish
 
 # OSX-specific
 if test (uname -s) = 'Darwin'
