@@ -6,6 +6,7 @@ set -x LANG en_US.UTF-8
 set -x LC_ALL en_US.UTF-8
 set -x NVM_DIR $HOME/nvm
 set -x VISUAL $EDITOR
+set -x TERM xterm-256color
 
 # Docker
 set -x DOCKER_HOST tcp://127.0.0.1:2375
