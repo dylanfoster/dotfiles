@@ -1,4 +1,5 @@
 # OSX-only
+set -e
 is_osx || return 1
 
 # Install Homebrew
@@ -22,9 +23,9 @@ fi
 # Install Homebrew Casks
 if brew cask &> /dev/null; then
   casks=(
-    appzapper
-    imageoptim
-    spotify
+    flux
+    seil
+    vagrant
     virtualbox
   )
 
@@ -38,13 +39,20 @@ fi
 # Install Homebrew Recipes
 if program_exists "brew"; then
   recipes=(
-    ack
-    automake
-    fish
     cloc
+    coreutils
+    fish
+    git
     git-extras
-    lesspipe
+    go
+    imagemagick --with-webp
+    moreutils
+    rename
+    the_silver_searcher
+    tmux
     tree
+    vim
+    watch
     wget
   )
 

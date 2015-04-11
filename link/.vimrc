@@ -25,72 +25,70 @@ set ignorecase
 set incsearch
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NeoBundle
+" Plug
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+let g:plug_home = '~/.vim/plugged'
+
+call plug#begin()
+
+Plug 'airblade/vim-gitgutter'
+Plug 'ap/vim-css-color'
+Plug 'bling/vim-airline'
+Plug 'bkad/CamelCaseMotion'
+Plug 'cakebaker/scss-syntax.vim'
+Plug 'chase/vim-ansible-yaml'
+Plug 'chriskempson/base16-vim'
+Plug 'corntrace/bufexplorer'
+Plug 'dag/vim-fish', { 'for': 'fish' }
+Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
+Plug 'docunext/closetag.vim'
+Plug 'edkolev/tmuxline.vim'
+Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
+Plug 'flazz/vim-colorschemes'
+Plug 'groenewege/vim-less', { 'for': 'less' }
+Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
+Plug 'heavenshell/vim-jsdoc'
+Plug 'jimmyhchan/dustjs.vim'
+Plug 'jtratner/vim-flavored-markdown'
+Plug 'justinmk/vim-gtfo'
+Plug 'juvenn/mustache.vim'
+Plug 'kchmck/vim-coffee-script'
+Plug 'kien/ctrlp.vim'
+Plug 'leshill/vim-json', { 'for': 'json' }
+Plug 'majutsushi/tagbar'
+Plug 'moll/vim-node'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'myhere/vim-nodejs-complete'
+Plug 'othree/html5.vim'
+Plug 'othree/yajs.vim'
+" Plug 'pangloss/vim-javascript'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'Shougo/neocomplete.vim'
+Plug 'terryma/vim-expand-region'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-ragtag'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'vim-scripts/Align'
+Plug 'vim-scripts/CycleColor'
+Plug 'vim-scripts/Crunch'
+Plug 'vim-scripts/directionalWindowResizer'
+Plug 'vim-scripts/gitignore.vim'
+Plug 'vim-scripts/nginx.vim'
+Plug 'vim-scripts/tComment'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-notes'
+
+call plug#end()
+
+" Install plugins if this is the first run
+if !isdirectory(expand(g:plug_home))
+  PlugInstall
 endif
-
-call neobundle#begin(expand('~/.vim/bundle'))
-
-NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/vimproc'
-
-NeoBundle 'MarcWeber/vim-addon-mw-utils'
-NeoBundle 'Valloric/YouCompleteMe'
-NeoBundle 'ap/vim-css-color'
-NeoBundle 'benmills/vim-commadown'
-NeoBundle 'benmills/vimux'
-NeoBundle 'bentruyman/vimux-ruby-test'
-NeoBundle 'bkad/CamelCaseMotion'
-NeoBundle 'cakebaker/scss-syntax.vim'
-NeoBundle 'corntrace/bufexplorer'
-NeoBundle 'dag/vim-fish'
-NeoBundle 'danheberden/vim-slantstatus'
-NeoBundle 'digitaltoad/vim-jade'
-NeoBundle 'docunext/closetag.vim'
-NeoBundle 'ekalinin/Dockerfile.vim'
-NeoBundle 'garbas/vim-snipmate'
-NeoBundle 'groenewege/vim-less'
-NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'heavenshell/vim-jsdoc'
-NeoBundle 'jgdavey/vim-turbux'
-NeoBundle 'jimmyhchan/dustjs.vim'
-NeoBundle 'jtratner/vim-flavored-markdown'
-NeoBundle 'justinmk/vim-gtfo'
-NeoBundle 'juvenn/mustache.vim'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'leshill/vim-json'
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'mattn/emmet-vim'
-NeoBundle 'moll/vim-node'
-NeoBundle 'othree/html5.vim'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'rodjek/vim-puppet'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'terryma/vim-expand-region'
-NeoBundle 'tomtom/tlib_vim'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-ragtag'
-NeoBundle 'tpope/vim-rails'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'vim-scripts/Align'
-NeoBundle 'vim-scripts/Crunch'
-NeoBundle 'vim-scripts/gitignore.vim'
-NeoBundle 'vim-scripts/tComment'
-NeoBundle 'walm/jshint.vim'
-NeoBundle 'xolox/vim-misc'
-NeoBundle 'xolox/vim-notes'
-
-NeoBundleCheck
-
-call neobundle#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " User Interface
@@ -100,7 +98,7 @@ call neobundle#end()
 set background=dark
 
 " Draw a vertical ruler at column 80
-execute "set colorcolumn=" . join(range(81,335), ',')
+" execute "set colorcolumn=" . join(range(81,335), ',')
 
 " Highlight current line
 set cursorline
@@ -147,6 +145,9 @@ set showmatch
 " Override 'ignorecase' if search pattern containers uppercase characters
 set smartcase
 
+" Lowers timeout length between commands
+set timeoutlen=250
+
 " Optimize for fast terminals
 set ttyfast
 
@@ -163,7 +164,7 @@ set wrap
 
 " Enable syntax highlighting
 syntax on
-colorscheme hybrid
+colorscheme base16-default
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
@@ -199,7 +200,7 @@ set encoding=utf-8 nobomb
 set noeol
 
 " Ignore certain files
-set wildignore+=*.pyc,*.o,*.class,*.lo,.git,*/node_modules/*,*/vendor/*
+set wildignore+=*.pyc,*.o,*.class,*.lo,.git,*/coverage/*,*/node_modules/*,*/vendor/*
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File-specific
@@ -227,6 +228,8 @@ augroup END
 
 " Autoremove trailing spaces when saving the buffer
 autocmd FileType ruby,c,cpp,java,php,html autocmd BufWritePre <buffer> :%s/\s\+$//e
+
+au BufRead,BufNewFile *.handlebars,*.hbs set ft=html syntax=handlebars
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Indentation
@@ -277,40 +280,36 @@ nmap <leader>wq :wqa!<cr>
 " Plugin Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Airline
+let g:airline_theme = 'base16'
+let g:airline_powerline_fonts = 1
+
 " ESLint
 let g:syntastic_javascript_checkers = ['eslint']
 
+" JSDOC
+nmap <silent> <C-m> <Plug>(jsdoc)
+
+" neocomplete
+let g:neocomplete#enable_at_startup = 1
+inoremap <expr> <TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : ""
+
 " NERDTree
-let NERDTreeIgnore=['\.pyc', '\.o', '\.class', '\.lo', 'node_modules']
+let NERDTreeIgnore=['\.pyc', '\.o', '\.class', '\.lo', 'code', 'coverage', 'node_modules', 'tmp']
 let NERDTreeHijackNetrw = 0
 map <silent> <LocalLeader>nt :NERDTreeToggle<CR>
 map <silent> <LocalLeader>nr :NERDTree<CR>
 map <silent> <LocalLeader>nf :NERDTreeFind<CR>
 
-" slantstatus
-call slantstatus#Segment('\ %{mode()}\ ', 26, 253)      " mode
-call slantstatus#Segment('%-3.3n', 244, 255)            " buffer number
-call slantstatus#Segment('', 241, 18)
-call slantstatus#Segment('\ %f', 237, 253)              " filename
-call slantstatus#Segment('switch', 0, 0)                " right-side
-call slantstatus#Segment('', 239, 232)
-call slantstatus#Segment('', 243, 232)
-call slantstatus#Segment('', 246, 232)
-call slantstatus#Segment('%16.(%l/%L,%c%V%)', 249, 232) " Line #, Total Line, Column
-call slantstatus#Segment('%3p%%', 166, 229)              " % of file
+" Tagbar
+map <silent> <LocalLeader>s :Tagbar<CR>
 
 " TComment
 map <silent> <LocalLeader>cc :TComment<CR>
 
-" Vimux
-let g:VimuxUseNearestPane = 1
-map <silent> <LocalLeader>rl :wa<CR> :VimuxRunLastCommand<CR>
-map <silent> <LocalLeader>vi :wa<CR> :VimuxInspectRunner<CR>
-map <silent> <LocalLeader>vk :wa<CR> :VimuxInterruptRunner<CR>
-map <silent> <LocalLeader>vx :wa<CR> :VimuxClosePanes<CR>
-map <silent> <LocalLeader>vp :VimuxPromptCommand<CR>
-vmap <silent> <LocalLeader>vs "vy :call VimuxRunCommand(@v)<CR>
-nmap <silent> <LocalLeader>vs vip<LocalLeader>vs<CR>
+" Mustache
+let g:mustache_abbreviations = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Functions

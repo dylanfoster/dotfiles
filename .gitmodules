@@ -1,9 +1,6 @@
-[submodule "vendor/git-extras"]
-	path = vendor/git-extras
-	url = https://github.com/visionmedia/git-extras
 [submodule "vendor/n"]
 	path = vendor/n
 	url = https://github.com/visionmedia/n
-[submodule "link/.vim/bundle/neobundle.vim"]
-	path = link/.vim/bundle/neobundle.vim
-	url = git://github.com/Shougo/neobundle.vim.git
+[submodule "vendor/z-fish"]
+	path = vendor/z-fish
+	url = git@github.com:sjl/z-fish.git

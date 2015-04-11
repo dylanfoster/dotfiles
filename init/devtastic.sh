@@ -1,4 +1,5 @@
 # Install Node.js stable
+set -e
 if ! program_exists "n"; then
   cd $HOME/.dotfiles/vendor/n
   make install
@@ -13,6 +14,7 @@ if program_exists "npm"; then
     gulp
     nodemon
     yo
+    ember-cli
   )
 
   { pushd "$(npm config get prefix)/lib/node_modules"; installed=(*); popd; } > /dev/null

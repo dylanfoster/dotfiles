@@ -11,15 +11,14 @@ packages=(
   autoconf
   bc
   build-essential
-  colortail
+  fish
   git-core
   htop
   libncurses5-dev
   libssl-dev
-  nmap
   telnet
   tree
-  zsh
+  vim-nox
 )
 
 list=()
