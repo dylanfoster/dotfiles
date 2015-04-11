@@ -45,7 +45,7 @@ if program_exists "brew"; then
     git
     git-extras
     go
-    imagemagick --with-webp
+    imagemagick
     moreutils
     rename
     the_silver_searcher
