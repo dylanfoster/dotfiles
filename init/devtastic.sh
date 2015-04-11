@@ -1,5 +1,4 @@
 # Install Node.js stable
-set -e
 if ! program_exists "n"; then
   cd $HOME/.dotfiles/vendor/n
   make install

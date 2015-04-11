@@ -1,5 +1,4 @@
 # OSX-only
-set -e
 is_osx || return 1
 
 # Install Homebrew
