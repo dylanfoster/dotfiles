@@ -57,6 +57,7 @@ end
 ## Git
 alias df 'df -h'
 alias fs 'stat -f "%z bytes"'
+alias_and_complete clone 'git clone'
 alias_and_complete g 'git'
 alias_and_complete ga 'git add -Av'
 alias_and_complete gcm 'git commit -m'
