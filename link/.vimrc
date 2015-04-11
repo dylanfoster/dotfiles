@@ -229,8 +229,7 @@ augroup END
 " Autoremove trailing spaces when saving the buffer
 autocmd FileType ruby,c,cpp,java,php,html autocmd BufWritePre <buffer> :%s/\s\+$//e
 
-au BufRead,BufNewFile *.handlebars,*.hbs set ft=html syntax=handlebars
-
+au BufRead,BufNewFile *.handlebars,*.hbs set ft=html syntax=mustache
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Indentation
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
