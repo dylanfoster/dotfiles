@@ -50,7 +50,7 @@ if program_exists "brew"; then
     the_silver_searcher
     tmux
     tree
-    vim
+    vim --with-lua
     watch
     wget
   )
