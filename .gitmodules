@@ -4,3 +4,9 @@
 [submodule "vendor/z-fish"]
 	path = vendor/z-fish
 	url = git@github.com:sjl/z-fish.git
+[submodule "link/.tmux/plugins/tmux-resurrect"]
+	path = link/.tmux/plugins/tmux-resurrect
+	url = https://github.com/tmux-plugins/tmux-resurrect.git
+[submodule "link/.tmux/plugins/tpm"]
+	path = link/.tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm.git
