@@ -102,6 +102,11 @@ end
 # Z
 . ~/.dotfiles/vendor/z-fish/z.fish
 
+# afk
+function afk
+  eval "/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+end
+
 # OSX-specific
 if test (uname -s) = 'Darwin'
   add_path /usr/local/lib/python2.7/site-packages
@@ -109,7 +114,6 @@ if test (uname -s) = 'Darwin'
   alias brewup 'brew update; and brew upgrade'
   alias cleanup 'find . -name "*.DS_Store" -type f -ls -delete'
   alias o 'open .'
-  alias afk '/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
   alias emptytrash 'sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl'
   alias flushdns 'dscacheutil -flushcache'
   alias vi 'vim'
