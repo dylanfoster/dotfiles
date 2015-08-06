@@ -1,22 +1,6 @@
 # OSX-only
 is_osx || return 1
 
-# Install Homebrew
-if ! program_exists "brew"; then
-  notice "Installing Homebrew"
-  true | /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-  installCasks
-  installRecipes
-else
-  notice "Updating Homebrew"
-  brew doctor
-  brew update
-
-  installCasks
-  installRecipes
-fi
-
 # Install Homebrew Cask Plugin
 installBrewCask() {
   notice "Installing Homebrew Cask Plugin"
@@ -74,3 +58,20 @@ installRecipes() {
     brew install $list
   fi
 }
+
+# Install Homebrew
+if ! program_exists "brew"; then
+  notice "Installing Homebrew"
+  true | /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+  installCasks
+  installRecipes
+else
+  notice "Updating Homebrew"
+  brew doctor
+  brew update
+
+  installCasks
+  installRecipes
+fi
+
