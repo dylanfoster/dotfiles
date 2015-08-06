@@ -148,13 +148,13 @@ if ! program_exists "git"; then
     if ! program_exists "brew"; then
       notice "Installing Homebrew"
       true | /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    fi
-    if program_exists "brew"; then
+    else
       notice "Updating Homebrew"
-      brew update
-      notice "Installing Git"
-      brew install git
+      brew update;
     fi
+
+    notice "Installing Git"
+    brew install git
   elif is_ubuntu; then
     notice "Installing Git"
     sudo apt-get -qq install git-core

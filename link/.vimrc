@@ -42,7 +42,6 @@ Plug 'chase/vim-ansible-yaml'
 Plug 'chriskempson/base16-vim'
 Plug 'corntrace/bufexplorer'
 Plug 'dag/vim-fish', { 'for': 'fish' }
-Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
 Plug 'docunext/closetag.vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
@@ -50,11 +49,9 @@ Plug 'flazz/vim-colorschemes'
 Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
 Plug 'heavenshell/vim-jsdoc'
-Plug 'jimmyhchan/dustjs.vim'
 Plug 'jtratner/vim-flavored-markdown'
 Plug 'justinmk/vim-gtfo'
 Plug 'juvenn/mustache.vim'
-Plug 'kchmck/vim-coffee-script'
 Plug 'kien/ctrlp.vim'
 Plug 'leshill/vim-json', { 'for': 'json' }
 Plug 'majutsushi/tagbar'
@@ -63,7 +60,6 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'myhere/vim-nodejs-complete'
 Plug 'othree/html5.vim'
 Plug 'othree/yajs.vim'
-" Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 Plug 'Shougo/neocomplete.vim'
@@ -298,6 +294,7 @@ inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : ""
 " NERDTree
 let NERDTreeIgnore=['\.pyc', '\.o', '\.class', '\.lo', 'code', 'coverage', 'node_modules', 'tmp']
 let NERDTreeHijackNetrw = 0
+let NERDTreeShowHidden = 1
 map <silent> <LocalLeader>nt :NERDTreeToggle<CR>
 map <silent> <LocalLeader>nr :NERDTree<CR>
 map <silent> <LocalLeader>nf :NERDTreeFind<CR>
@@ -311,21 +308,7 @@ map <silent> <LocalLeader>cc :TComment<CR>
 " Mustache
 let g:mustache_abbreviations = 1
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Functions
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Trim trailing whitespace
-function! Trim()
-  %s/\s*$//
-endfunction
-command! -nargs=0 Trim :call Trim()
-nnoremap <silent> <Leader>cw :Trim<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"  DragVisuals
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" DragVisuals
 runtime plugin/dragvisuals.vim
 
 vmap  <expr>  <LEFT>   DVB_Drag('left')
@@ -336,3 +319,14 @@ vmap  <expr>  D        DVB_Duplicate()
 
 " Remove any introduced trailing whitespace after moving...
 let g:DVB_TrimWS = 1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Functions
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Trim trailing whitespace
+function! Trim()
+  %s/\s*$//
+endfunction
+command! -nargs=0 Trim :call Trim()
+nnoremap <silent> <Leader>cw :Trim<CR>

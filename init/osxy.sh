@@ -5,38 +5,50 @@ is_osx || return 1
 if ! program_exists "brew"; then
   notice "Installing Homebrew"
   true | /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi
 
-if program_exists "brew"; then
+  installCasks
+  installRecipes
+else
   notice "Updating Homebrew"
+  brew doctor
   brew update
+
+  installCasks
+  installRecipes
 fi
 
 # Install Homebrew Cask Plugin
-if ! brew cask &> /dev/null; then
+installBrewCask() {
   notice "Installing Homebrew Cask Plugin"
   brew tap phinze/homebrew-cask 2> /dev/null
   brew install brew-cask 2> /dev/null
-fi
+}
 
 # Install Homebrew Casks
-if brew cask &> /dev/null; then
+installCasks() {
+  if ! brew cask &> /dev/null; then
+    installBrewCask
+  fi
+
   casks=(
+    adium
     flux
+    iterm2
     seil
     vagrant
     virtualbox
   )
 
   list="$(to_install "${casks[*]}" "$(brew cask list)")"
+
   if [[ "$list" ]]; then
     notice "Installing Homebrew Casks: ${list[*]}"
     brew cask install $list
   fi
-fi
+}
 
 # Install Homebrew Recipes
-if program_exists "brew"; then
+installRecipes() {
   recipes=(
     cloc
     coreutils
@@ -56,8 +68,9 @@ if program_exists "brew"; then
   )
 
   list="$(to_install "${recipes[*]}" "$(brew list)")"
+
   if [[ "$list" ]]; then
     notice "Installing Homebrew Recipes: ${list[*]}"
     brew install $list
   fi
-fi
+}

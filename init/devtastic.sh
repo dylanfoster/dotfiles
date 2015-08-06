@@ -1,19 +1,19 @@
 # Install Node.js stable
 if ! program_exists "n"; then
-  cd $HOME/.dotfiles/vendor/n
+  pushd $HOME/.dotfiles/vendor/n
   make install
-  n stable
+  n latest
 else
-  n stable
+  n latest
 fi
 
 # Install NPM global modules
 if program_exists "npm"; then
   modules=(
+    ember-cli
     gulp
     nodemon
     yo
-    ember-cli
   )
 
   { pushd "$(npm config get prefix)/lib/node_modules"; installed=(*); popd; } > /dev/null
@@ -23,3 +23,10 @@ if program_exists "npm"; then
     npm install -g $list
   fi
 fi
+
+# Install powerline-shell
+pushd $HOME/.dotfiles/vendor/powerline-shell &> /dev/null
+cp ./config.py.dist ./config.py
+./install.py
+ln -s $HOME/.dotfiles/vendor/powerline-shell/powerline-shell.py $HOME/powerline-shell.py
+popd &> /dev/null

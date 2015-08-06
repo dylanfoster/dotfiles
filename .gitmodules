@@ -10,3 +10,6 @@
 [submodule "link/.tmux/plugins/tpm"]
 	path = link/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm.git
+[submodule "vendor/powerline-shell"]
+	path = vendor/powerline-shell
+	url = https://github.com/milkbikis/powerline-shell.git
