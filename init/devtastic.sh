@@ -34,5 +34,5 @@ ln -s $HOME/.dotfiles/vendor/powerline-shell/powerline-shell.py $HOME/powerline-
 popd &> /dev/null
 
 for file in $HOME/.dotfiles/funcs; do
-  mv $HOME/.dotfiles/$file /usr/local/bin
+  mv $file /usr/local/bin
 done
