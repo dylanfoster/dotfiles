@@ -8,9 +8,6 @@ set -x NVM_DIR $HOME/nvm
 set -x VISUAL $EDITOR
 set -x TERM xterm-256color
 
-# Docker
-set -x DOCKER_HOST tcp://127.0.0.1:2375
-
 # Paths
 function add_path --argument-names path
   test -d $path; and set PATH $path $PATH
