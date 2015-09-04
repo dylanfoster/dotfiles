@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-sudo docker run --rm -it \
+docker run --rm -it \
   -u vader \
   -v $(pwd):/data/app \
   -w /data/app \
