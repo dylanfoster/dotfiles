@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Install Node.js stable
 if ! program_exists "n"; then
   pushd $HOME/.dotfiles/vendor/n

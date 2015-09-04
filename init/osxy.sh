@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # OSX-only
 is_osx || return 1
 
