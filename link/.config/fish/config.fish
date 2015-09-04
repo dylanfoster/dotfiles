@@ -119,10 +119,4 @@ if test (uname -s) = 'Darwin'
   alias vi 'vim'
 end
 
-if (which docker) 2> /dev/null; and (which docker-machine) 2> /dev/null
-  if test (docker-machine status default) != "Running"
-    docker-machine start default 2> /dev/null
-  end
-  source $HOME/.dockerfunc
-  eval (docker-machine env default)
-end
+source $HOME/.dockerfunc
