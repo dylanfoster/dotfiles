@@ -119,7 +119,7 @@ if test (uname -s) = 'Darwin'
   alias vi 'vim'
 end
 
-if hash docker 2> /dev/null; and hash docker-machine 2> /dev/null
+if (which docker) 2> /dev/null; and (which docker-machine) 2> /dev/null
   if test (docker-machine status default) != "Running"
     docker-machine start default 2> /dev/null
   end
