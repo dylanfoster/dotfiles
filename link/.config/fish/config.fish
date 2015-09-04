@@ -118,3 +118,11 @@ if test (uname -s) = 'Darwin'
   alias flushdns 'dscacheutil -flushcache'
   alias vi 'vim'
 end
+
+if hash docker 2> /dev/null; and hash docker-machine 2> /dev/null
+  if test (docker-machine status default) != "Running"
+    docker-machine start default 2> /dev/null
+  end
+  source $HOME/.dockerfunc
+  eval (docker-machine env default)
+end
