@@ -1,8 +1,0 @@
-#!/bin/bash
-set -e
-
-docker run --rm -it \
-  -u vader \
-  -v $(pwd):/data/app \
-  -w /data/app \
-  dylanfoster/node:0.12 node $@

@@ -32,7 +32,3 @@ cp ./config.py.dist ./config.py
 ./install.py
 ln -s $HOME/.dotfiles/vendor/powerline-shell/powerline-shell.py $HOME/powerline-shell.py
 popd &> /dev/null
-
-for file in $( ls $HOME/.dotfiles/funcs ); do
-  cp $HOME/.dotfiles/funcs/$file /usr/local/bin
-done
