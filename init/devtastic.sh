@@ -34,5 +34,5 @@ ln -s $HOME/.dotfiles/vendor/powerline-shell/powerline-shell.py $HOME/powerline-
 popd &> /dev/null
 
 for file in $( ls $HOME/.dotfiles/funcs ); do
-  cp $file /usr/local/bin
+  cp $HOME/.dotfiles/func/$file /usr/local/bin
 done
