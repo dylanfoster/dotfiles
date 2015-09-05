@@ -1,12 +1,15 @@
 [submodule "vendor/n"]
 	path = vendor/n
 	url = https://github.com/tj/n.git
-[submodule "vendor/powerline-shell"]
-	path = vendor/powerline-shell
-	url = https://github.com/milkbikis/powerline-shell.git
 [submodule "tmux/plugins/tmux-resurrect"]
 	path = tmux/plugins/tmux-resurrect
 	url = https://github.com/tmux-plugins/tmux-resurrect.git
 [submodule "tmux/plugins/tpm"]
 	path = tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule "zprezto"]
+	path = zprezto
+	url = https://github.com/sorin-ionescu/prezto.git
+[submodule "vendor/powerline-shell"]
+	path = vendor/powerline-shell
+	url = https://github.com/milkbikis/powerline-shell.git
