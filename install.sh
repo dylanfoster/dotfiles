@@ -123,7 +123,6 @@ init(){
   move_in_and_init "brew.sh"
   move_in_and_init "node.sh"
   move_in_and_init "osx.sh"
-  move_in_and_init "shell.sh"
   move_in_and_init "ubuntu.sh"
   set -e
 }
