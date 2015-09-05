@@ -1,48 +1,68 @@
-dotfiles
-========
+# dotfiles
 
-System bootstrap for OS X and Ubuntu
+![](/shell.png)
 
 ## Installation
 
-`bash -c "$(curl -fsSL https://raw.github.com/dylan947/dotfiles/master/bin/dotfiles)"`
+```shell
+git clone https://github.com/dylanfoster/dotfiles.git && cd dotfiles && source install.sh
+```
 
+## What's in the box
 
-## Veni, vidi, vici
+#### [zsh](http://www.zsh.org/)
 
-Installs and boostraps your system in a few steps in `.dotfiles/bin/dotfiles`
+> Zsh is a shell designed for interactive use
 
-### init
+Included with my zsh:
 
-The meat of the dotfiles, this runs most of the bootstrapping.
+ -  [zprezto](https://github.com/sorin-ionescu/prezto)
+ -  [aliases](https://github.com/dylanfoster/dotfiles/blob/master/zshrc)
 
-### link
+#### [tmux](https://tmux.github.io/)
 
-Symlinks that will be linked to $HOME
+> tmux is a terminal multiplexer
 
-### bin
+Included with tmux:
+  
+  - [tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect)
+  - [tpm](https://github.com/tmux-plugins/tpm)
 
-Anything inside of `bin` can be accessed during your terminal session.
+#### n/node/npm
 
-## What's inside
+[n](https://github.com/tj/n)
 
-### Homebrew
+> Simple flavour of node/iojs binary management, no subshells, no profile setup, no convoluted api, just simple.
 
-Of course, we use Homebrew for just about everything on OS X
+[node](https://nodejs.org)
 
-### Git
+> Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.
 
-If git is not installed, it will be by Homebrew. In addtion, we'll include git-extras to make your gitting even better
+[npm](https://npmjs.com)
 
-### n and Node.js
+> npm is the package manager for node
 
-[n](https://github.com/visionmedia/n) is Node version manager which will install the latest stable version of Node.js
+Included with npm:
 
-### Vim and Neobundle
+  - [bower](http://bower.io/)
+  - [ember-cli](http://www.ember-cli.com/)
+  - [gulp](http://gulpjs.com/)
+  - [supervisor](https://github.com/petruisfan/node-supervisor)
+  - [yo](http://yeoman.io/)
 
-Vim. That is all that needs to be said
+#### [vim](https://github.com/vim/vim)
 
-### [Fish-shell](http://fishshell.com)
+> Vim is an almost compatible version of the UNIX editor Vi.
+
+Included with vim:
+
+  - [vim-plug](https://github.com/junegunn/vim-plug)
+
+#### [homebrew](http://brew.sh/)
+
+> The missing package manager for OS X
+
+[Included with homebrew](https://github.com/dylanfoster/dotfiles/blob/master/init/brew.sh)
 
 ## Thanks
 
@@ -50,3 +70,27 @@ Thanks for the footwork
 
  - Ben Truyman [dotfiles](https://github.com/bentruyman/dotfiles)
  - Mathias Bynens [dotfiles](https://github.com/mathiasbynens/dotfiles)
+
+## License
+
+The MIT License (MIT)
+
+Copyright (c) 2015 Dylan Foster <dylan947@gmail.com>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
