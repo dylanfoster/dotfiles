@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# OSX-only
+is_osx || return 1
+
 # ~/.osx — http://mths.be/osx
 
 # Ask for the administrator password upfront
