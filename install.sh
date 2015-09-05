@@ -49,8 +49,18 @@ skip_info() {
   log "\033[1;31m✖ $@\033[0m";
 }
 
+is_osx() { [[ "$OSTYPE" =~ ^darwin ]] || return 1; }
+is_ubuntu() { [[ "$(cat /etc/issue 2> /dev/null)" =~ Ubuntu ]] || return 1; }
+
+program_exists() {
+  if [ "$(type -P $1)" ]; then
+    return 0
+  fi
+  return 1
+}
+
 backup() {
-  warn "Making backup at $BACKUPS_DIR"
+  info "Making backups of your dotfiles"
 
   for file in $DOTFILES; do
     if [[ -f "$HOME/.$file" ]]; then
@@ -76,7 +86,7 @@ link() {
 }
 
 link_files() {
-  warn "Linking dotfiles"
+  info "Linking dotfiles"
 
   for file in $DOTFILES; do
     if [[ -e "$HOME/.$file" ]]; then
@@ -86,29 +96,6 @@ link_files() {
     fi
   done
 }
-
-install() {
-  if [[ ! -d $DOTFILES_DIR ]]; then
-    info "Installing dotfiles"
-  else
-    info "Updating dotfiles"
-    backup
-    if [[ -z "$backups" ]]; then
-      info "Nothing to backup"
-    fi
-    link_files
-  fi
-}
-
-program_exists() {
-  if [ "$(type -P $1)" ]; then
-    return 0
-  fi
-  return 1
-}
-
-is_osx() { [[ "$OSTYPE" =~ ^darwin ]] || return 1; }
-is_ubuntu() { [[ "$(cat /etc/issue 2> /dev/null)" =~ Ubuntu ]] || return 1; }
 
 move_in_and_init() {
   local init_dir="$DOTFILES_DIR/init"
@@ -125,6 +112,23 @@ init(){
   move_in_and_init "osx.sh"
   move_in_and_init "ubuntu.sh"
   set -e
+}
+
+install_submodules() {
+  info "Installing plugins"
+  git submodule update --init --recursive
+}
+
+install() {
+  info "Here we go!"
+  backup
+  if [[ -z "$backups" ]]; then
+    warn "Nothing to backup"
+  fi
+  success "Backups complete -> $BACKUPS_DIR"
+  install_submodules
+  success "Plugins installed!"
+  link_files
 }
 ################################################################################
 #
