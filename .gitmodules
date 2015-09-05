@@ -1,15 +1,12 @@
 [submodule "vendor/n"]
 	path = vendor/n
-	url = https://github.com/visionmedia/n
-[submodule "vendor/z-fish"]
-	path = vendor/z-fish
-	url = git@github.com:sjl/z-fish.git
-[submodule "link/.tmux/plugins/tmux-resurrect"]
-	path = link/.tmux/plugins/tmux-resurrect
-	url = https://github.com/tmux-plugins/tmux-resurrect.git
-[submodule "link/.tmux/plugins/tpm"]
-	path = link/.tmux/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm.git
+	url = https://github.com/tj/n.git
 [submodule "vendor/powerline-shell"]
 	path = vendor/powerline-shell
 	url = https://github.com/milkbikis/powerline-shell.git
+[submodule "tmux/plugins/tmux-resurrect"]
+	path = tmux/plugins/tmux-resurrect
+	url = https://github.com/tmux-plugins/tmux-resurrect.git
+[submodule "tmux/plugins/tpm"]
+	path = tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
