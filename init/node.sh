@@ -2,7 +2,7 @@
 
 # Install Node.js stable
 if ! program_exists "n"; then
-  pushd $DOTFILES_DIR/vendor/n
+  pushd $DOTFILES_DIR/n
   make install
   n latest
 else
