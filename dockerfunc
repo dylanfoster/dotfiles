@@ -5,15 +5,15 @@ node() {
     -u vader \
     -v $(pwd):/data/app \
     -w /data/app \
-    dylanfoster/node:0.12 node $argv
+    dylanfoster/node-dev:0.12 node "$@"
 }
 
 npm() {
   docker run --rm -it \
     -u vader \
     -e SHELL=/bin/sh \
-    -v ~/.npm:/home/vader/.npm \
+    -v $HOME/.npm:/home/vader/.npm \
     -v $(pwd):/data/app \
     -w /data/app \
-    dylanfoster/node-dev:0.12 npm $argv
+    dylanfoster/node-dev:0.12 npm --no-bin-links "$@"
 }
