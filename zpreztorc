@@ -5,8 +5,9 @@ zstyle ':prezto:*:*' color 'yes'
 # Load Modules
 
 zstyle ':prezto:load' pmodule \
-  'completion' \
   'environment' \
+  'utility' \
+  'completion' \
   'fasd' \
   'git' \
   'history' \
@@ -15,8 +16,7 @@ zstyle ':prezto:load' pmodule \
   'osx' \
   'spectrum' \
   'prompt' \
-  'tmux' \
-  'utility'
+  'tmux'
 
 # Module Settings
 
