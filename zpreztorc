@@ -10,10 +10,10 @@ zstyle ':prezto:load' pmodule \
   'fasd' \
   'git' \
   'history' \
+  'syntax-highlighting' \
   'history-substring-search' \
   'osx' \
   'spectrum' \
-  'syntax-highlighting' \
   'prompt' \
   'tmux' \
   'utility'
