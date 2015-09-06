@@ -11,6 +11,8 @@ node() {
 npm() {
   docker run --rm -it \
     -u vader \
+    -e SHELL=/bin/sh \
+    -v ~/.npm:/home/vader/.npm \
     -v $(pwd):/data/app \
     -w /data/app \
     dylanfoster/node-dev:0.12 npm $argv
