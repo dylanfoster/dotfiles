@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+[[ "$(cat /etc/issue 2> /dev/null)" =~ Ubuntu ]] || return 1;
+
 node() {
   docker run --rm -it \
     -u vader \

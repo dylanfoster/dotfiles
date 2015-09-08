@@ -56,17 +56,8 @@ npms() {
   npm search --registry=https://registry.npmjs.org $argv
 }
 
-NPM=/usr/local/bin/npm
-npi() {
-  $NPM install $@
-}
-
-npu() {
-  $NPM uninstall $@
-}
-
 npp() {
-  $NPM publish $@
+  npm publish $@
 }
 
 # network
