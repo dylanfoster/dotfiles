@@ -50,6 +50,8 @@ alias gfc='git diff-tree --no-commit-id --name-only -r'
 # Shorter more useful log
 alias glog='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit --'
 
+# npm
+
 npms() {
   npm search --registry=https://registry.npmjs.org $argv
 }
@@ -67,12 +69,17 @@ npp() {
   $NPM publish $@
 }
 
+# network
+
+alias ip='curl -s http://checkip.dyndns.com/ | sed "s/[^0-9\.]//g"'
+alias whois='whois -h whois-servers.net'
 # osx
 
 if [ $(uname -s) = 'Darwin' ]; then
   alias cleanup='find . -name "*.DS_Store" -type f -ls -delete'
   alias emptytrash='sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl'
   alias afk='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
+  alias flushdns='dscacheutil -flushcache'
 fi
 
 # tmux
