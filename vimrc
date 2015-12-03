@@ -24,6 +24,8 @@ set ignorecase
 " Show search matches while typing
 set incsearch
 
+set smartindent
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plug
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -283,6 +285,7 @@ let g:syntastic_javascript_checkers = ['eslint']
 
 " JSDOC
 nmap <silent> <C-m> <Plug>(jsdoc)
+let g:jsdoc_enable_es6 = 1
 
 " neocomplete
 let g:neocomplete#enable_at_startup = 1

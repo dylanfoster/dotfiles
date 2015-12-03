@@ -75,7 +75,7 @@ fi
 
 # tmux
 
-alias tma='tmux attach -t'
+alias tma='tmux attach -d -t'
 alias tmk='tmux kill-session -t'
 alias tml='tmux list-sessions'
 tmn() {
