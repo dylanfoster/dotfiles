@@ -10,3 +10,6 @@
 [submodule "n"]
 	path = n
 	url = https://github.com/tj/n.git
+[submodule "tmux/plugins/tmux-continuum"]
+	path = tmux/plugins/tmux-continuum
+	url = https://github.com/tmux-plugins/tmux-continuum.git

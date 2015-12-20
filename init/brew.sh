@@ -17,7 +17,6 @@ installCasks() {
   fi
 
   brew cask install \
-    adium \
     appzapper \
     dockertoolbox \
     flux \

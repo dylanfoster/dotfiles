@@ -95,6 +95,8 @@ link_files() {
       link "$file"
     fi
   done
+
+  check_and_link "env"
 }
 
 move_in_and_init() {
