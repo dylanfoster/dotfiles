@@ -1,5 +1,6 @@
 alias tma='tmux attach -d -t'
 alias tmk='tmux kill-session -t'
+alias tmak='tmux kill-server'
 alias tml='tmux list-sessions'
 tmn() {
   if [ ! -z $argv ]; then
@@ -11,3 +12,4 @@ tmn() {
 
   tmux new -s "$name"
 }
+

@@ -8,6 +8,7 @@ setopt AUTO_NAME_DIRS
 setopt EXTENDED_GLOB
 setopt RM_STAR_SILENT
 setopt null_glob
+
 # Source environment scripts
 for file in "$HOME"/.env/*.sh; do
   source $file
