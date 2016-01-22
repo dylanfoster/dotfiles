@@ -13,3 +13,6 @@ setopt null_glob
 for file in "$HOME"/.env/*.sh; do
   source $file
 done
+
+# added by travis gem
+[ -f /Users/dylan_foster/.travis/travis.sh ] && source /Users/dylan_foster/.travis/travis.sh
