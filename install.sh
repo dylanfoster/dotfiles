@@ -1,11 +1,8 @@
-#!/usr/bin/env bash
+#!/bin/bash
 set -e
 
-################################################################################
-#
 # Variables
-#
-################################################################################
+
 ALL_FILES=$(ls .)
 DOTFILES_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 TIMESTAMP=$(date +%s)
@@ -14,20 +11,18 @@ BACKUPS_DIR=$DOTFILES_DIR/backups/$TIMESTAMP
 IGNORED_FILES='backups\|bin\|init\|install\|vendor\|.gitmodules\|LICENSE\|README.md'
 DOTFILES=$(echo $ALL_FILES | tr ' ' '\n' | grep -v "$IGNORED_FILES")
 
-################################################################################
-#
-# Functions
-#
-################################################################################
-header() {
-  echo -e "   |¯|        |¯|       /¯¯¯¯|   |¯|             "
-  echo -e "   | |        | |      |  /¯¯ _  | |             "
-  echo -e "   | |      __| |__  __| |__ ( ) | |             "
-  echo -e "  _| |  __ (__   __)(__   __) ¯  | |  ___  /¯¯¯  "
-  echo -e " /   | /  \   | |      | |   |¯| | | /   \ \___  "
-  echo -e "|    ||    |  | |      | |   | | | ||¯¯¯¯      \ "
-  echo -e " \__/  \__/   |_|      |_|   |_| |_| \___/  ___/ "
+# Intro
+
+show_intro() {
+	echo -e "     _         _      ___     _                    "
+	echo -e "    ( )       ( )_  /'___) _ (_ )                  "
+	echo -e "   _| |   _   | ,_)| (__  (_) | |    __    ___     "
+	echo -e " /'_  | /'_ \ | |  | ,__) | | | |  /'__ \/',__)    "
+	echo -e "( (_| |( (_) )| |_ | |    | | | | (  ___/\__, \    "
+	echo -e " \__,_) \___/' \__)(_)    (_)(___) \____)(____/    "
 }
+
+# Functions
 
 log(){
   echo -e "$1";
@@ -95,8 +90,11 @@ link_files() {
       link "$file"
     fi
   done
+}
 
-  check_and_link "env"
+install_submodules() {
+  info "Installing plugins"
+  git submodule update --init --recursive
 }
 
 move_in_and_init() {
@@ -104,6 +102,18 @@ move_in_and_init() {
   pushd "$init_dir" &> /dev/null
   source "$1"
   popd &> /dev/null
+}
+
+install() {
+  info "Just do it!"
+  backup
+  if [[ -z "$backups" ]]; then
+    warn "Nothing to backup"
+  fi
+  success "Backups complete -> $BACKUPS_DIR"
+  install_submodules
+  success "Plugins installed!"
+  link_files
 }
 
 init(){
@@ -116,29 +126,10 @@ init(){
   set -e
 }
 
-install_submodules() {
-  info "Installing plugins"
-  git submodule update --init --recursive
-}
+# Just do it
 
-install() {
-  info "Here we go!"
-  backup
-  if [[ -z "$backups" ]]; then
-    warn "Nothing to backup"
-  fi
-  success "Backups complete -> $BACKUPS_DIR"
-  install_submodules
-  success "Plugins installed!"
-  link_files
-}
-################################################################################
-#
-# Install
-#
-################################################################################
 echo
-header
+show_intro
 echo
 install
 init

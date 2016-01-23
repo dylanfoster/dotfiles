@@ -20,4 +20,3 @@ alias gfc='git diff-tree --no-commit-id --name-only -r'
 
 # Shorter more useful log
 alias glog='git log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset" --abbrev-commit --'
-

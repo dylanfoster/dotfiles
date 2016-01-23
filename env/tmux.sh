@@ -13,4 +13,3 @@ tmn() {
 
   tmux new -s "$name"
 }
-

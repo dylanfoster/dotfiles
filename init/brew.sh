@@ -17,7 +17,6 @@ installCasks() {
   fi
 
   brew cask install \
-    appzapper \
     dockertoolbox \
     flux \
     iterm2 \
