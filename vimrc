@@ -35,6 +35,7 @@ let g:plug_home = '~/.vim/plugged'
 call plug#begin()
 
 Plug 'airblade/vim-gitgutter'
+Plug 'albfan/nerdtree-git-plugin'
 Plug 'ap/vim-css-color'
 Plug 'atweiden/vim-dragvisuals'
 Plug 'bling/vim-airline'
@@ -58,6 +59,7 @@ Plug 'juvenn/mustache.vim'
 Plug 'kien/ctrlp.vim'
 Plug 'leshill/vim-json', { 'for': 'json' }
 Plug 'majutsushi/tagbar'
+Plug 'moll/vim-node'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'othree/html5.vim'
 Plug 'othree/yajs.vim'
@@ -80,6 +82,7 @@ Plug 'vim-scripts/directionalWindowResizer'
 Plug 'vim-scripts/gitignore.vim'
 Plug 'vim-scripts/nginx.vim'
 Plug 'vim-scripts/tComment'
+Plug 'w0ng/vim-hybrid'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
 
@@ -164,7 +167,7 @@ set wrap
 
 " Enable syntax highlighting
 syntax on
-colorscheme railscasts
+colorscheme hybrid
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
