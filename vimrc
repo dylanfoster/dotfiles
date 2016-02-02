@@ -50,6 +50,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 Plug 'flazz/vim-colorschemes'
+Plug 'geekjuice/vim-mocha'
 Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
 Plug 'heavenshell/vim-jsdoc'
@@ -68,6 +69,7 @@ Plug 'scrooloose/syntastic'
 Plug 'shawncplus/phpcomplete.vim'
 Plug 'Shougo/neocomplete.vim'
 Plug 'terryma/vim-expand-region'
+Plug 'edkolev/tmuxline.vim'
 Plug 'tobyS/pdv'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
@@ -289,6 +291,10 @@ let g:airline_powerline_fonts = 1
 " ESLint
 let g:syntastic_javascript_checkers = ['eslint']
 
+" Hybrid
+
+let g:hybrid_custom_term_colors = 1
+
 " JSDOC
 nmap <silent> <C-m> <Plug>(jsdoc)
 let g:jsdoc_enable_es6 = 1
@@ -299,7 +305,7 @@ inoremap <expr> <TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : ""
 
 " NERDTree
-let NERDTreeIgnore=['\.pyc', '\.o', '\.class', '\.lo', 'code', 'coverage', 'node_modules', 'tmp']
+let NERDTreeIgnore=['\.pyc', '\.o', '\.class', 'coverage', 'node_modules', 'tmp']
 let NERDTreeHijackNetrw = 0
 let NERDTreeShowHidden = 1
 map <silent> <LocalLeader>nt :NERDTreeToggle<CR>

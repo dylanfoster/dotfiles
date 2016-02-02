@@ -10,6 +10,14 @@ dstart() {
   docker-machine env $DOCKER_MACHINE_NAME > $DOCKER_ENV
 }
 
+dkill() {
+  docker-machine kill $@
+}
+
+dlist() {
+  docker-machine ls
+}
+
 if [[ -f $DOCKER_ENV ]]; then
   denv
 fi
