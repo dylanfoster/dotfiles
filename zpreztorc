@@ -21,6 +21,7 @@ zstyle ':prezto:load' pmodule \
 # Module Settings
 
 zstyle ':prezto:module:prompt' theme 'sorin'
+zstyle ':prezto:module:tmux:auto-start' local 'yes'
 
 # Paths
 
