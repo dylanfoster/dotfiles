@@ -336,6 +336,9 @@ inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : ""
 let g:neomake_open_list = 2
 
 if has('nvim')
+  let g:neomake_javascript_enabled_makers = ['eslint']
+  nmap <leader>t :let g:neomake_javascript_enabled_makers = ['jshint']<cr>:Neomake<cr>
+  nmap <leader>f :let g:neomake_javascript_enabled_makers = ['eslint']<cr>:Neomake<cr>
   autocmd! BufWritePost * Neomake
 endif
 
