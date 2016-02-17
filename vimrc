@@ -58,6 +58,7 @@ Plug 'juvenn/mustache.vim'
 Plug 'kchmck/vim-coffee-script'
 Plug 'leshill/vim-json', { 'for': 'json' }
 Plug 'majutsushi/tagbar'
+Plug 'mattn/emmet-vim'
 Plug 'mhinz/vim-startify'
 Plug 'moll/vim-node'
 Plug 'othree/html5.vim'
