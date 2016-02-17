@@ -332,10 +332,8 @@ inoremap <expr> <TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : ""
 
 " neomake
-
-let g:neomake_open_list = 2
-
 if has('nvim')
+  let g:neomake_open_list = 2
   let g:neomake_javascript_enabled_makers = ['eslint']
   nmap <leader>t :let g:neomake_javascript_enabled_makers = ['jshint']<cr>:Neomake<cr>
   nmap <leader>f :let g:neomake_javascript_enabled_makers = ['eslint']<cr>:Neomake<cr>
@@ -370,6 +368,22 @@ vmap  <expr>  D        DVB_Duplicate()
 
 " Remove any introduced trailing whitespace after moving...
 let g:DVB_TrimWS = 1
+
+" vim-test
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
+
+let test#javascript#mocha#options = '--recursive -R spec -b'
+
+function! TestStrategy(cmd)
+  execute 'T '.a:cmd
+endfunction
+
+let g:test#custom_strategies = {'test_strategy': function('TestStrategy')}
+let g:test#strategy = 'test_strategy'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Functions
