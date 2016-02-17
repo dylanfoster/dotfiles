@@ -10,6 +10,8 @@ installBrewCask() {
   brew install brew-cask 2> /dev/null
 }
 
+brew tap neovim/neovim
+
 # Install Homebrew Casks
 installCasks() {
   if ! brew cask &> /dev/null; then
@@ -45,6 +47,9 @@ installRecipes() {
     vim --with-lua \
     watch \
     wget
+
+  brew install --HEAD \
+    neovim
 }
 
 # Install Homebrew

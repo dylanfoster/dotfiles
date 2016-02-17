@@ -9,84 +9,99 @@ set nocompatible
 filetype plugin on
 filetype indent on
 
-" Uses bash as shell and prevents PATH variable from being prefixed
-set shell=bash\ --norc
-
 " Allow backspace in insert mode
 set backspace=indent,eol,start
 
-" Hide buffers instead of closing them
-set hidden
-
 " Ignore case when searching
 set ignorecase
+set smartcase
 
 " Show search matches while typing
 set incsearch
 
 set smartindent
 
+set mouse=
+
+set foldlevelstart=10
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plug
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:plug_home = '~/.vim/plugged'
 
-call plug#begin()
+if !has("nvim")
+  call plug#begin('~/.vim/plugged')
+else
+  call plug#begin('~/.config/nvim/plugged')
+endif
 
 Plug 'airblade/vim-gitgutter'
 Plug 'albfan/nerdtree-git-plugin'
 Plug 'ap/vim-css-color'
-Plug 'atweiden/vim-dragvisuals'
-Plug 'bling/vim-airline'
 Plug 'bkad/CamelCaseMotion'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'chase/vim-ansible-yaml'
 Plug 'chriskempson/base16-vim'
 Plug 'corntrace/bufexplorer'
-Plug 'dag/vim-fish', { 'for': 'fish' }
+Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
 Plug 'docunext/closetag.vim'
-Plug 'editorconfig/editorconfig-vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
-Plug 'flazz/vim-colorschemes'
-Plug 'geekjuice/vim-mocha'
-Plug 'groenewege/vim-less', { 'for': 'less' }
+Plug 'geekjuice/vim-mocha', { 'for': 'javascript' }
+Plug 'gilsondev/searchtasks.vim'
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
 Plug 'heavenshell/vim-jsdoc'
-Plug 'jtratner/vim-flavored-markdown'
+Plug 'janko-m/vim-test'
 Plug 'justinmk/vim-gtfo'
 Plug 'juvenn/mustache.vim'
-Plug 'kien/ctrlp.vim'
+Plug 'kchmck/vim-coffee-script'
 Plug 'leshill/vim-json', { 'for': 'json' }
 Plug 'majutsushi/tagbar'
+Plug 'mhinz/vim-startify'
 Plug 'moll/vim-node'
-Plug 'mustache/vim-mustache-handlebars'
 Plug 'othree/html5.vim'
 Plug 'othree/yajs.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/syntastic'
-Plug 'shawncplus/phpcomplete.vim'
-Plug 'Shougo/neocomplete.vim'
+Plug 'shime/vim-livedown'
+Plug 'shinokada/dragvisuals.vim'
+Plug 'svermeulen/vim-easyclip'
 Plug 'terryma/vim-expand-region'
-Plug 'edkolev/tmuxline.vim'
-Plug 'tobyS/pdv'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'vim-scripts/Align'
-Plug 'vim-scripts/CycleColor'
 Plug 'vim-scripts/Crunch'
 Plug 'vim-scripts/directionalWindowResizer'
+Plug 'vim-scripts/bash-support.vim'
 Plug 'vim-scripts/gitignore.vim'
 Plug 'vim-scripts/nginx.vim'
 Plug 'vim-scripts/tComment'
 Plug 'w0ng/vim-hybrid'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
+Plug 'ryanoasis/vim-devicons' " Must load last
+
+if !has('nvim')
+  Plug 'scrooloose/syntastic'
+endif
+
+if has('nvim')
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  Plug 'benekastah/neomake', { 'commit': 'cfd24b0' }
+  Plug 'kassio/neoterm'
+  Plug 'Shougo/deoplete.nvim'
+endif
 
 call plug#end()
 
@@ -198,14 +213,14 @@ if exists("&undodir")
   set undodir=~/.vim/undo
 endif
 
-" Use UTF-8 encoding without BOM
-set encoding=utf-8 nobomb
-
 " Don't add empty newlines at the end of files
 set noeol
 
 " Ignore certain files
-set wildignore+=*.pyc,*.o,*.class,*.lo,.git,*/coverage/*,*/node_modules/*,*/vendor/*
+set wildignore+=
+  \.git,
+  \*/node_modules,
+  \*/tmp
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File-specific
@@ -285,8 +300,20 @@ nmap <leader>wq :wqa!<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Airline
-let g:airline_theme = 'base16'
+let g:airline_theme = 'luna'
 let g:airline_powerline_fonts = 1
+
+" Devicons
+let g:webdevicons_enable_nerdtree = 1
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
+let g:DevIconsEnableFolderPatternMatching = 1
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
+let WebDevIconsUnicodeDecorateFolderNodesExactMatches = 1
+let g:DevIconsEnableFoldersOpenClose = 1
+
+" deoplete
+let g:deoplete#enable_at_startup = 1
 
 " ESLint
 let g:syntastic_javascript_checkers = ['eslint']
@@ -304,8 +331,16 @@ let g:neocomplete#enable_at_startup = 1
 inoremap <expr> <TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : ""
 
+" neomake
+
+let g:neomake_open_list = 2
+
+if has('nvim')
+  autocmd! BufWritePost * Neomake
+endif
+
 " NERDTree
-let NERDTreeIgnore=['\.pyc', '\.o', '\.class', 'coverage', 'node_modules', 'tmp']
+let NERDTreeIgnore=['coverage', 'node_modules', 'tmp']
 let NERDTreeHijackNetrw = 0
 let NERDTreeShowHidden = 1
 map <silent> <LocalLeader>nt :NERDTreeToggle<CR>
@@ -343,3 +378,13 @@ function! Trim()
 endfunction
 command! -nargs=0 Trim :call Trim()
 nnoremap <silent> <Leader>cw :Trim<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Development
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Reload vimrc when changed
+augroup myvimrc
+  au!
+  au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,init.vim so $MYVIMRC
+augroup END
