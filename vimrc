@@ -48,15 +48,19 @@ Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
 Plug 'docunext/closetag.vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
+Plug 'editorconfig/editorconfig-vim'
+Plug 'elzr/vim-json'
 Plug 'geekjuice/vim-mocha', { 'for': 'javascript' }
 Plug 'gilsondev/searchtasks.vim'
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
 Plug 'heavenshell/vim-jsdoc'
 Plug 'janko-m/vim-test'
+Plug 'jiangmiao/auto-pairs'
 Plug 'justinmk/vim-gtfo'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'juvenn/mustache.vim'
 Plug 'kchmck/vim-coffee-script'
-Plug 'leshill/vim-json', { 'for': 'json' }
+Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 Plug 'mhinz/vim-startify'
@@ -185,7 +189,7 @@ set wrap
 
 " Enable syntax highlighting
 syntax on
-colorscheme hybrid
+colorscheme hybrid_reverse
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
@@ -320,6 +324,16 @@ let g:deoplete#enable_at_startup = 1
 
 " ESLint
 let g:syntastic_javascript_checkers = ['eslint']
+
+" FZF
+if !has('nvim')
+  let g:fzf_height = 20
+  map <C-p> :FZF<CR>
+else
+  map <C-p> :call fzf#run({
+  \ 'sink': 'e',
+  \ 'window': 'topleft 20new'})<CR>
+endif
 
 " Hybrid
 

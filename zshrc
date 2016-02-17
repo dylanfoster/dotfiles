@@ -16,3 +16,5 @@ done
 
 # added by travis gem
 [ -f /Users/dylan_foster/.travis/travis.sh ] && source /Users/dylan_foster/.travis/travis.sh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
