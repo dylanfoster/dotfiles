@@ -241,13 +241,15 @@ if version >= 700
   autocmd FileType tex setlocal spell spelllang=en_us
 endif
 
+autocmd FileType markdown setlocal spell spelllang=en_us
+
 augroup markdown
   au!
   au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
 augroup END
 
 " Autoremove trailing spaces when saving the buffer
-autocmd FileType ruby,c,cpp,java,php,html autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd FileType css,html,javascript,markdown,php,ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 au BufRead,BufNewFile *.handlebars,*.hbs set ft=html syntax=mustache
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -353,6 +355,10 @@ map <silent> <LocalLeader>s :Tagbar<CR>
 
 " TComment
 map <silent> <LocalLeader>cc :TComment<CR>
+
+" Markdown
+
+let g:markdown_fenced_languages = ['html', 'css', 'javascript', 'bash=sh']
 
 " Mustache
 let g:mustache_abbreviations = 1
