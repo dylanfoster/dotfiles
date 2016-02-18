@@ -11,6 +11,7 @@ installBrewCask() {
 }
 
 brew tap neovim/neovim
+brew tap caskroom/versions
 
 # Install Homebrew Casks
 installCasks() {
@@ -21,7 +22,7 @@ installCasks() {
   brew cask install \
     dockertoolbox \
     flux \
-    iterm2 \
+    iterm2-nightly \
     macdown \
     seil \
     vagrant \
