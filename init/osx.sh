@@ -423,22 +423,15 @@ defaults write com.apple.appstore WebKitDeveloperExtras -bool true
 defaults write com.apple.appstore ShowDebugMenu -bool true
 
 ###############################################################################
-# Alfred 2                                                                    #
-###############################################################################
-
-# Set Alfred theme to dark
-defaults write com.runningwithcrayons.Alfred-Preferences appearance.theme -string "alfred.theme.dark"
-
-###############################################################################
 # F.lux                                                                       #
 ###############################################################################
 
 # Transition over an hour
 #defaults write org.herf.Flux transitionSpeed -int 1
 
-# Sets location to Chicago
-#defaults write org.herf.Flux location -string "60640"
-#defaults write org.herf.Flux locationTextField -string "60640"
+# Sets location to San Jose
+#defaults write org.herf.Flux location -string "95126"
+#defaults write org.herf.Flux locationTextField -string "95126"
 #defaults write org.herf.Flux locationType -string "Z"
 
 ###############################################################################
@@ -463,6 +456,13 @@ defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
 # Remove scrollbar
 defaults write com.apple.Terminal AppleShowScrollbars WhenScrolling
+
+###############################################################################
+# Neovim                                                                      #
+###############################################################################
+
+# Install python neovim
+pip3 install neovim
 
 ###############################################################################
 # Kill affected applications                                                  #

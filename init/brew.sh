@@ -41,6 +41,7 @@ installRecipes() {
     go \
     imagemagick \
     moreutils \
+    python3 \
     rename \
     the_silver_searcher \
     tmux \

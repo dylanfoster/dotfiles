@@ -19,3 +19,5 @@ sudo apt-get -qq install \
   telnet \
   tree \
   vim-nox
+
+pip3 install neovim

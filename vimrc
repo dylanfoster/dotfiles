@@ -350,7 +350,6 @@ inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : ""
 
 " neomake
 if has('nvim')
-  let g:neomake_open_list = 2
   let g:neomake_javascript_enabled_makers = ['eslint']
   nmap <leader>t :let g:neomake_javascript_enabled_makers = ['jshint']<cr>:Neomake<cr>
   nmap <leader>f :let g:neomake_javascript_enabled_makers = ['eslint']<cr>:Neomake<cr>
@@ -358,7 +357,7 @@ if has('nvim')
 endif
 
 " NERDTree
-let NERDTreeIgnore=['coverage', 'node_modules', 'tmp']
+let NERDTreeIgnore=['.git', 'coverage', 'node_modules', 'tmp']
 let NERDTreeHijackNetrw = 0
 let NERDTreeShowHidden = 1
 map <silent> <LocalLeader>nt :NERDTreeToggle<CR>
