@@ -18,11 +18,8 @@ set smartcase
 
 " Show search matches while typing
 set incsearch
-
 set smartindent
-
 set mouse=
-
 set foldlevelstart=10
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -67,6 +64,7 @@ Plug 'mhinz/vim-startify'
 Plug 'moll/vim-node'
 Plug 'othree/html5.vim'
 Plug 'othree/yajs.vim'
+Plug 'osyo-manga/vim-over'
 Plug 'scrooloose/nerdtree'
 Plug 'shime/vim-livedown'
 Plug 'shinokada/dragvisuals.vim'
@@ -199,7 +197,7 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd BufRead,InsertLeave * match ExtraWhitespace /\s\+$/
 
 " Highlight too-long lines
-autocmd BufRead,InsertEnter,InsertLeave * 2match OverLength /\%126v.*/
+autocmd BufRead,InsertEnter,InsertLeave * 2match OverLength /\%100v.*/
 highlight OverLength ctermbg=black guibg=black
 autocmd ColorScheme * highlight OverLength ctermbg=black guibg=black
 
@@ -231,32 +229,13 @@ set wildignore+=
 " File-specific
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-compiler ruby
-
-autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4
-autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4
-
-autocmd FileType tex setlocal textwidth=78
-autocmd BufNewFile,BufRead *.txt setlocal textwidth=78
-
-autocmd FileType ruby runtime ruby_mappings.vim
-
-if version >= 700
-  autocmd BufNewFile,BufRead *.txt setlocal spell spelllang=en_us
-  autocmd FileType tex setlocal spell spelllang=en_us
-endif
+au BufRead,BufNewFile *.handlebars,*.hbs set ft=html syntax=mustache
 
 autocmd FileType markdown setlocal spell spelllang=en_us
 
-augroup markdown
-  au!
-  au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
-augroup END
-
 " Autoremove trailing spaces when saving the buffer
-autocmd FileType css,html,javascript,markdown,php,ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd FileType css,html,javascript,markdown autocmd BufWritePre <buffer> :%s/\s\+$//e
 
-au BufRead,BufNewFile *.handlebars,*.hbs set ft=html syntax=mustache
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Indentation
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -319,8 +298,32 @@ let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 let WebDevIconsUnicodeDecorateFolderNodesExactMatches = 1
 let g:DevIconsEnableFoldersOpenClose = 1
 
-" deoplete
+" Deoplete
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#file#enable_buffer_path = 1
+
+" DragVisuals
+runtime plugin/dragvisuals.vim
+vmap  <expr>  <LEFT>   DVB_Drag('left')
+vmap  <expr>  <RIGHT>  DVB_Drag('right')
+vmap  <expr>  <DOWN>   DVB_Drag('down')
+vmap  <expr>  <UP>     DVB_Drag('up')
+vmap  <expr>  D        DVB_Duplicate()
+
+" Remove any introduced trailing whitespace after moving...
+let g:DVB_TrimWS = 1
+
+" DragVisuals
+runtime plugin/dragvisuals.vim
+
+vmap  <expr>  <LEFT>   DVB_Drag('left')
+vmap  <expr>  <RIGHT>  DVB_Drag('right')
+vmap  <expr>  <DOWN>   DVB_Drag('down')
+vmap  <expr>  <UP>     DVB_Drag('up')
+vmap  <expr>  D        DVB_Duplicate()
+
+" Remove any introduced trailing whitespace after moving...
+let g:DVB_TrimWS = 1
 
 " ESLint
 let g:syntastic_javascript_checkers = ['eslint']
@@ -335,20 +338,21 @@ else
   \ 'window': 'topleft 20new'})<CR>
 endif
 
+" Gitgutter
+let g:gitgutter_realtime = 0
+
 " Hybrid
 
 let g:hybrid_custom_term_colors = 1
 
-" JSDOC
+" JSDoc
 nmap <silent> <C-m> <Plug>(jsdoc)
 let g:jsdoc_enable_es6 = 1
 
-" neocomplete
-let g:neocomplete#enable_at_startup = 1
-inoremap <expr> <TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : ""
+" Markdown
+let g:markdown_fenced_languages = ['html', 'css', 'javascript', 'bash=sh']
 
-" neomake
+" Neomake
 if has('nvim')
   let g:neomake_javascript_enabled_makers = ['eslint']
   nmap <leader>t :let g:neomake_javascript_enabled_makers = ['jshint']<cr>:Neomake<cr>
@@ -357,12 +361,16 @@ if has('nvim')
 endif
 
 " NERDTree
-let NERDTreeIgnore=['.git', 'coverage', 'node_modules', 'tmp']
+let NERDTreeIgnore=['coverage', 'node_modules', 'tmp']
 let NERDTreeHijackNetrw = 0
 let NERDTreeShowHidden = 1
 map <silent> <LocalLeader>nt :NERDTreeToggle<CR>
 map <silent> <LocalLeader>nr :NERDTree<CR>
 map <silent> <LocalLeader>nf :NERDTreeFind<CR>
+
+" Over
+nnoremap <Leader>fr :call VisualFindAndReplace()<CR>
+xnoremap <Leader>fr :call VisualFindAndReplaceWithSelection()<CR>
 
 " Tagbar
 map <silent> <LocalLeader>s :Tagbar<CR>
@@ -370,26 +378,10 @@ map <silent> <LocalLeader>s :Tagbar<CR>
 " TComment
 map <silent> <LocalLeader>cc :TComment<CR>
 
-" Markdown
-
-let g:markdown_fenced_languages = ['html', 'css', 'javascript', 'bash=sh']
-
 " Mustache
 let g:mustache_abbreviations = 1
 
-" DragVisuals
-runtime plugin/dragvisuals.vim
-
-vmap  <expr>  <LEFT>   DVB_Drag('left')
-vmap  <expr>  <RIGHT>  DVB_Drag('right')
-vmap  <expr>  <DOWN>   DVB_Drag('down')
-vmap  <expr>  <UP>     DVB_Drag('up')
-vmap  <expr>  D        DVB_Duplicate()
-
-" Remove any introduced trailing whitespace after moving...
-let g:DVB_TrimWS = 1
-
-" vim-test
+" Test
 nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
 nmap <silent> <leader>a :TestSuite<CR>
@@ -415,6 +407,14 @@ function! Trim()
 endfunction
 command! -nargs=0 Trim :call Trim()
 nnoremap <silent> <Leader>cw :Trim<CR>
+
+" Search & replace
+function! VisualFindAndReplace()
+    :OverCommandLine%s/
+endfunction
+function! VisualFindAndReplaceWithSelection() range
+    :'<,'>OverCommandLine s/
+endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Development

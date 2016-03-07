@@ -14,6 +14,7 @@ if program_exists "npm"; then
   npm install -g \
     bower \
     ember-cli \
+    eslint \
     gulp \
     supervisor \
     yo
