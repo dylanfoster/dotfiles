@@ -301,6 +301,8 @@ let g:DevIconsEnableFoldersOpenClose = 1
 " Deoplete
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#file#enable_buffer_path = 1
+inoremap <expr> <TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : ""
 
 " DragVisuals
 runtime plugin/dragvisuals.vim
