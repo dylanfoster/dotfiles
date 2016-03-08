@@ -1,0 +1,4 @@
+split-window -v -p 20
+send-keys 'npm run watch' 'C-m'
+select-pane -t 1
+send-keys 'nvim' 'C-m' '\nt'
