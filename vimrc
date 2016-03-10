@@ -342,6 +342,9 @@ let g:jsdoc_enable_es6 = 1
 " Markdown
 let g:markdown_fenced_languages = ['html', 'css', 'javascript', 'bash=sh']
 
+" Mustache
+let g:mustache_abbreviations = 1
+
 " Neomake
 if has('nvim')
   let g:neomake_javascript_enabled_makers = ['eslint']
@@ -362,14 +365,15 @@ map <silent> <LocalLeader>nf :NERDTreeFind<CR>
 nnoremap <Leader>fr :call VisualFindAndReplace()<CR>
 xnoremap <Leader>fr :call VisualFindAndReplaceWithSelection()<CR>
 
+" Startify
+let g:startify_change_to_dir = 0
+let g:startify_change_to_vcs_root = 1
+
 " Tagbar
 map <silent> <LocalLeader>s :Tagbar<CR>
 
 " TComment
 map <silent> <LocalLeader>cc :TComment<CR>
-
-" Mustache
-let g:mustache_abbreviations = 1
 
 " Test
 nmap <silent> <leader>t :TestNearest<CR>
