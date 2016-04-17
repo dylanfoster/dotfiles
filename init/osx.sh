@@ -15,6 +15,9 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # General UI/UX                                                               #
 ###############################################################################
 
+# Install fonts
+cp "$HOME/dotfiles/init/fonts/"* "$HOME/Library/Fonts"
+
 # Set computer name (as done via System Preferences → Sharing)
 # sudo scutil --set ComputerName "[computer name]"
 # sudo scutil --set HostName "[computer name]"
@@ -427,12 +430,19 @@ defaults write com.apple.appstore ShowDebugMenu -bool true
 ###############################################################################
 
 # Transition over an hour
-#defaults write org.herf.Flux transitionSpeed -int 1
+defaults write org.herf.Flux transitionSpeed -int 1
 
 # Sets location to San Jose
-#defaults write org.herf.Flux location -string "95126"
-#defaults write org.herf.Flux locationTextField -string "95126"
-#defaults write org.herf.Flux locationType -string "Z"
+defaults write org.herf.Flux location -string "95126"
+defaults write org.herf.Flux locationTextField -string "95126"
+defaults write org.herf.Flux locationType -string "Z"
+
+
+###############################################################################
+# iTerm                                                                       #
+###############################################################################
+
+open "${HOME}/dotfiles/init/files/hybrid.itermcolors"
 
 ###############################################################################
 # Google Chrome & Google Chrome Canary                                        #
