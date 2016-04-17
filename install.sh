@@ -8,7 +8,7 @@ DOTFILES_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 TIMESTAMP=$(date +%s)
 BACKUPS=
 BACKUPS_DIR=$DOTFILES_DIR/backups/$TIMESTAMP
-IGNORED_FILES='backups\|bin\|init\|install\|vendor\|.gitmodules\|LICENSE\|README.md'
+IGNORED_FILES='LICENSE\|README.md\|backups\|bin\|init\|install\|shell.png\|vendor\|.gitmodules'
 DOTFILES=$(echo $ALL_FILES | tr ' ' '\n' | grep -v "$IGNORED_FILES")
 
 # Intro
@@ -45,7 +45,9 @@ skip_info() {
 }
 
 is_osx() { [[ "$OSTYPE" =~ ^darwin ]] || return 1; }
-is_ubuntu() { [[ "$(cat /etc/issue 2> /dev/null)" =~ Ubuntu ]] || return 1; }
+is_ubuntu() {
+  [[ "$(cat /etc/lsb-release 2> /dev/null | head -1 2> /dev/null)" =~ Ubuntu ]] || return 1
+}
 
 program_exists() {
   if [ "$(type -P $1)" ]; then
@@ -111,7 +113,6 @@ install() {
     warn "Nothing to backup"
   fi
   success "Backups complete -> $BACKUPS_DIR"
-  install_submodules
   success "Plugins installed!"
   link_files
 }
@@ -119,10 +120,11 @@ install() {
 init(){
   info "Running bootstrap scripts"
   set +e
-  move_in_and_init "brew.sh"
-  move_in_and_init "node.sh"
   move_in_and_init "osx.sh"
   move_in_and_init "ubuntu.sh"
+  install_submodules
+  move_in_and_init "brew.sh"
+  move_in_and_init "node.sh"
   set -e
 }
 
