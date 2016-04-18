@@ -1,6 +1,6 @@
 FROM ubuntu:trusty
 
-RUN adduser --disabled-password --gecos ' ' -uid 1000 vader \
+RUN adduser --disabled-password --gecos ' ' --uid 1000 vader \
       && adduser vader sudo \
       && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 USER vader
