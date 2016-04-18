@@ -5,10 +5,11 @@ set -e
 
 ALL_FILES=$(ls .)
 DOTFILES_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+DOTIGNORE=$DOTFILES_DIR/.dotignore
 TIMESTAMP=$(date +%s)
 BACKUPS=
 BACKUPS_DIR=$DOTFILES_DIR/backups/$TIMESTAMP
-IGNORED_FILES="$(cat $DOTFILES_DIR/.dotignore | tr -d '\n')"
+IGNORED_FILES="$(cat $DOTIGNORE | while read line; do echo -n "$line\|"; done | sed 's/.\{2\}$//')"
 DOTFILES=$(echo $ALL_FILES | tr ' ' '\n' | grep -v "$IGNORED_FILES")
 
 # Intro
