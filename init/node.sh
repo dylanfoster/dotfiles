@@ -3,7 +3,7 @@
 # Install Node.js stable
 if ! program_exists "n"; then
   pushd $DOTFILES_DIR/n
-  make install
+  sudo -u "$(whoami)" make install
   n latest
 else
   n latest

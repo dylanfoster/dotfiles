@@ -50,7 +50,7 @@ is_ubuntu() {
 }
 
 program_exists() {
-  if [ "$(type -P $1)" ]; then
+  if [ "$(type -p $1)" ]; then
     return 0
   fi
   return 1
@@ -97,6 +97,7 @@ link_files() {
 install_submodules() {
   info "Installing plugins"
   git submodule update --init --recursive
+  success "Plugins installed!"
 }
 
 move_in_and_init() {
@@ -113,7 +114,6 @@ install() {
     warn "Nothing to backup"
   fi
   success "Backups complete -> $BACKUPS_DIR"
-  success "Plugins installed!"
   link_files
 }
 
@@ -123,7 +123,6 @@ init(){
   move_in_and_init "osx.sh"
   move_in_and_init "ubuntu.sh"
   install_submodules
-  move_in_and_init "brew.sh"
   move_in_and_init "node.sh"
   set -e
 }
