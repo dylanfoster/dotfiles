@@ -539,7 +539,7 @@ fi
 # Change shell to ZSH
 if [[ "$SHELL" != "$ZSH_BIN" ]]; then
   sudo chsh -s "$ZSH_BIN" "$USER"
-  env "$ZSH_BIN"
+#  env "$ZSH_BIN"
 fi
 
 ###############################################################################

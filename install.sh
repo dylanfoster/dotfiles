@@ -88,7 +88,7 @@ link() {
 }
 
 link_files() {
-  info "Linking dotfiles"
+  info "Linking dotfiles..."
 
   for file in $DOTFILES; do
     if [[ -e "$HOME/.$file" ]]; then
@@ -103,7 +103,7 @@ link_files() {
 }
 
 install_submodules() {
-  debug "Installing plugins"
+  info "Installing plugins"
   git submodule update --init --recursive
   success "Plugins installed!"
 }
@@ -122,6 +122,7 @@ install() {
     debug "Nothing to backup"
   fi
   success "Backups complete -> $BACKUPS_DIR"
+  install_submodules
   link_files
 }
 
@@ -130,7 +131,6 @@ init(){
   set +e
   move_in_and_init "osx.sh"
   move_in_and_init "ubuntu.sh"
-  install_submodules
   move_in_and_init "node.sh"
   set -e
 }
