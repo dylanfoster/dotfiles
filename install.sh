@@ -8,7 +8,7 @@ DOTFILES_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 TIMESTAMP=$(date +%s)
 BACKUPS=
 BACKUPS_DIR=$DOTFILES_DIR/backups/$TIMESTAMP
-IGNORED_FILES='LICENSE\|README.md\|backups\|bin\|init\|install\|shell.png\|vendor\|.gitmodules'
+IGNORED_FILES="$(cat $DOTFILES_DIR/.dotignore | tr -d '\n')"
 DOTFILES=$(echo $ALL_FILES | tr ' ' '\n' | grep -v "$IGNORED_FILES")
 
 # Intro
