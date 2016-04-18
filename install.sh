@@ -122,7 +122,6 @@ install() {
     debug "Nothing to backup"
   fi
   success "Backups complete -> $BACKUPS_DIR"
-  install_submodules
   link_files
 }
 
@@ -131,6 +130,7 @@ init(){
   set +e
   move_in_and_init "osx.sh"
   move_in_and_init "ubuntu.sh"
+  install_submodules
   move_in_and_init "node.sh"
   set -e
 }
