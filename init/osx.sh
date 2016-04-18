@@ -53,7 +53,8 @@ install_recipes() {
     tree \
     vim --with-lua \
     watch \
-    wget
+    wget \
+    zsh
 
   brew install --HEAD \
     neovim
@@ -512,6 +513,35 @@ defaults write org.herf.Flux locationType -string "Z"
 
 open "${HOME}/dotfiles/init/files/hybrid.itermcolors"
 
+# Disable prompt on close or quit
+defaults write com.googlecode.iterm2 PromptOnClose -bool false
+defaults write com.googlecode.iterm2 PromptOnQuit -bool false
+
+
+###############################################################################
+# Seil                                                                        #
+###############################################################################
+
+# Maps Caps-Lock to Escape
+defaults write org.pqrs.Seil sysctl '{ enable_capslock = 1; keycode_capslock = 53; }'
+
+###############################################################################
+# Shell                                                                       #
+###############################################################################
+
+ZSH_BIN=$(command -v zsh 2> /dev/null)
+
+# Add ZSH to list of valid shells
+if [[ "$ZSH_BIN" && $(grep -L "$ZSH_BIN" /etc/shells) ]]; then
+  echo "$ZSH_BIN" | sudo tee -a /etc/shells &> /dev/null
+fi
+
+# Change shell to ZSH
+if [[ "$SHELL" != "$ZSH_BIN" ]]; then
+  sudo chsh -s "$ZSH_BIN" "$USER"
+  env "$ZSH_BIN"
+fi
+
 ###############################################################################
 # Google Chrome & Google Chrome Canary                                        #
 ###############################################################################
@@ -519,14 +549,6 @@ open "${HOME}/dotfiles/init/files/hybrid.itermcolors"
 # Allow installing user scripts via GitHub or Userscripts.org
 defaults write com.google.Chrome ExtensionInstallSources -array "https://*.github.com/*" "http://userscripts.org/*"
 defaults write com.google.Chrome.canary ExtensionInstallSources -array "https://*.github.com/*" "http://userscripts.org/*"
-
-###############################################################################
-# iTerm2                                                                      #
-###############################################################################
-
-# Disable prompt on close or quit
-defaults write com.googlecode.iterm2 PromptOnClose -bool false
-defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
 ###############################################################################
 # Terminal.app                                                                #
