@@ -14,7 +14,7 @@ DOTFILES=$(echo $ALL_FILES | tr ' ' '\n' | grep -v "$IGNORED_FILES")
 
 # Intro
 
-show_intro() {
+intro() {
   echo -e "     _         _      ___     _                    "
   echo -e "    ( )       ( )_  /'___) _ (_ )                  "
   echo -e "   _| |   _   | ,_)| (__  (_) | |    __    ___     "
@@ -29,19 +29,23 @@ log(){
   echo -e "$1";
 }
 
-info() {
-  log "\033[1;30m=> $@\033[0m";
+debug() {
+  log "\033[1;30m==> $@\033[0m";
 }
 
-warn() {
-  log "\033[1;32m=> $@\033[0m";
+info() {
+  log "\033[1;32m==> $@\033[0m";
 }
 
 success() {
   log "\033[0;32m✔ $@\033[0m";
 }
 
-skip_info() {
+skip() {
+  log "\033[1;36m✖ $@\033[0m";
+}
+
+error() {
   log "\033[1;31m✖ $@\033[0m";
 }
 
@@ -74,7 +78,7 @@ check_and_link() {
     ln -sf "$DOTFILES_DIR/$1" "$HOME/.$1"
     success "$DOTFILES_DIR/$1 -> $HOME/.$1"
   else
-    skip_info "Skipping $HOME/.$1"
+    skip "Skipping $HOME/.$1"
   fi
 }
 
@@ -93,10 +97,13 @@ link_files() {
       link "$file"
     fi
   done
+
+  # TODO find a cleaner way
+  rm -rf $HOME/.n
 }
 
 install_submodules() {
-  info "Installing plugins"
+  debug "Installing plugins"
   git submodule update --init --recursive
   success "Plugins installed!"
 }
@@ -109,17 +116,17 @@ move_in_and_init() {
 }
 
 install() {
-  info "Just do it!"
+  debug "Just do it!"
   backup
   if [[ -z "$backups" ]]; then
-    warn "Nothing to backup"
+    debug "Nothing to backup"
   fi
   success "Backups complete -> $BACKUPS_DIR"
   link_files
 }
 
 init(){
-  info "Running bootstrap scripts"
+  debug "Running bootstrap scripts"
   set +e
   move_in_and_init "osx.sh"
   move_in_and_init "ubuntu.sh"
@@ -131,7 +138,7 @@ init(){
 # Just do it
 
 echo
-show_intro
+intro
 echo
 install
 init

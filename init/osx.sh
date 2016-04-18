@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
-
-# OSX-only
 is_osx || return 1
 
+################################################################################
+# Homebrew                                                                     #
+################################################################################
+
 # Install Homebrew Cask Plugin
-installBrewCask() {
-  warn "Installing Homebrew Cask Plugin"
+install_brew_cask() {
+  info "Installing Homebrew Cask Plugin"
+
   brew tap phinze/homebrew-cask 2> /dev/null
   brew install brew-cask 2> /dev/null
 }
@@ -14,9 +17,11 @@ brew tap neovim/neovim
 brew tap caskroom/versions
 
 # Install Homebrew Casks
-installCasks() {
+install_casks() {
+  info "Installing Homebrew casks..."
+
   if ! brew cask &> /dev/null; then
-    installBrewCask
+    install_brew_cask
   fi
 
   brew cask install \
@@ -30,8 +35,8 @@ installCasks() {
 }
 
 # Install Homebrew Recipes
-installRecipes() {
-  warn "Installing Homebrew Recipes: ${list[*]}"
+install_recipes() {
+  info "Installing Homebrew Recipes..."
 
   brew install \
     cloc \
@@ -56,19 +61,27 @@ installRecipes() {
 
 # Install Homebrew
 if ! program_exists "brew"; then
-  warn "Installing Homebrew"
+  info "Installing Homebrew"
+
   true | /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-  installCasks
-  installRecipes
+  install_casks
+  install_recipes
 else
-  warn "Updating Homebrew"
+  info "Updating Homebrew..."
   brew doctor
   brew update
 
-  installCasks
-  installRecipes
+  install_casks
+  install_recipes
 fi
+
+brew cleanup
+
+################################################################################
+# OS X                                                                         #
+################################################################################
+info "Running system setup..."
 
 # Ask for the administrator password upfront
 sudo -v
@@ -82,12 +95,6 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # Install fonts
 cp "$HOME/dotfiles/init/fonts/"* "$HOME/Library/Fonts"
-
-# Set computer name (as done via System Preferences → Sharing)
-# sudo scutil --set ComputerName "[computer name]"
-# sudo scutil --set HostName "[computer name]"
-# sudo scutil --set LocalHostName "[computer-name]"
-# sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "[computer-name]"
 
 # Set standby delay to 24 hours (default is 1 hour)
 sudo pmset -a standbydelay 86400
@@ -341,10 +348,6 @@ sudo nvram boot-args="mbasd=1"
 # Show the ~/Library folder
 chflags nohidden ~/Library
 
-# Remove Dropbox’s green checkmark icons in Finder
-file=/Applications/Dropbox.app/Contents/Resources/emblem-dropbox-uptodate.icns
-[ -e "$file" ] && mv -f "$file" "$file.bak"
-
 ###############################################################################
 # Dock, Dashboard, and hot corners                                            #
 ###############################################################################
@@ -364,7 +367,7 @@ defaults write com.apple.dock show-process-indicators -bool true
 # Wipe all (default) app icons from the Dock
 # This is only really useful when setting up a new Mac, or if you don’t use
 # the Dock to launch apps.
-#defaults write com.apple.dock persistent-apps -array
+defaults write com.apple.dock persistent-apps -array
 
 # Don’t animate opening applications from the Dock
 defaults write com.apple.dock launchanim -bool false
@@ -543,8 +546,9 @@ pip3 install neovim
 # Kill affected applications                                                  #
 ###############################################################################
 
-for app in "Address Book" "Alfred 2" "Calendar" "Contacts" "Dashboard" "Dock" \
+for app in "Address Book" "Calendar" "Contacts" "Dashboard" "Dock" \
   "Flux" "Finder" "Safari" "SystemUIServer" "iCal" "iTunes"; do
   killall "$app" > /dev/null 2>&1
 done
-echo "Done. Note that some of these changes require a logout/restart to take effect."
+
+success "Done. Note that some of these changes require a logout/restart to take effect."

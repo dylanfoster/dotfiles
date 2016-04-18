@@ -1,10 +1,10 @@
-# Ubuntu-only
+#!/usr/bin/env bash
 is_ubuntu || return 1
 
 LINUXBREW="$HOME/.linuxbrew/bin/brew"
 
 # Update APT
-warn "Updating APT"
+info "Updating APT"
 
 sudo apt-get update
 sudo apt-get install -y software-properties-common \
@@ -15,7 +15,7 @@ sudo apt-get update
 sudo apt-get upgrade -y
 
 # Install APT packages
-warn "Installing APT packages..."
+info "Installing APT packages..."
 
 sudo apt-get install -y \
   autoconf \
@@ -41,14 +41,18 @@ sudo apt-get install -y \
   tree \
   zlib1g-dev
 
+success "Installed apt packages"
 
 # Install Linuxbrew
 if [[ ! -f "$LINUXBREW" ]]; then
-  warn "Installing Linuxbrew..."
+  info "Installing Linuxbrew..."
+
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/linuxbrew/go/install)"
 fi
 
 # Install Linuxbrew packages
+info "Installing Linuxbrew packages..."
+
 $LINUXBREW update
 $LINUXBREW install \
   git-extras \
@@ -57,6 +61,7 @@ $LINUXBREW install \
   vim \
   zsh
 
+# Shell
 ZSH_BIN="$HOME/.linuxbrew/bin/zsh"
 
 # Add ZSH to list of valid shells
