@@ -13,9 +13,6 @@ install_brew_cask() {
   brew install brew-cask 2> /dev/null
 }
 
-brew tap neovim/neovim
-brew tap caskroom/versions
-
 # Install Homebrew Casks
 install_casks() {
   info "Installing Homebrew casks..."
@@ -66,6 +63,8 @@ if ! program_exists "brew"; then
 
   true | /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
+  brew tap neovim/neovim
+  brew tap caskroom/versions
   install_casks
   install_recipes
 else
@@ -73,6 +72,8 @@ else
   brew doctor
   brew update
 
+  brew tap neovim/neovim
+  brew tap caskroom/versions
   install_casks
   install_recipes
 fi

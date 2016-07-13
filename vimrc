@@ -58,6 +58,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'juvenn/mustache.vim'
 Plug 'kchmck/vim-coffee-script'
 Plug 'kristijanhusak/vim-hybrid-material'
+Plug 'leafgarland/typescript-vim'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 Plug 'mhinz/vim-startify'
@@ -352,6 +353,9 @@ if has('nvim')
   nmap <leader>f :let g:neomake_javascript_enabled_makers = ['eslint']<cr>:Neomake<cr>
   autocmd! BufWritePost * Neomake
 endif
+
+" Neoterm
+let g:neoterm_shell = "zsh"
 
 " NERDTree
 let NERDTreeIgnore=['coverage', 'node_modules', 'tmp']
