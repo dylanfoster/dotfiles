@@ -9,3 +9,8 @@
   user = dylanfoster
 [push]
   default = simple
+[gitflow "hotfix"]
+	tag = false
+	notag = true
+[gitflow]
+	multi-hotfix = true
