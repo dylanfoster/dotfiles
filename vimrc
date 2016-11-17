@@ -57,6 +57,7 @@ Plug 'justinmk/vim-gtfo'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'juvenn/mustache.vim'
 Plug 'kchmck/vim-coffee-script'
+Plug 'keith/swift.vim'
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'leafgarland/typescript-vim'
 Plug 'majutsushi/tagbar'
