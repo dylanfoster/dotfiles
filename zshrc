@@ -14,7 +14,7 @@ for file in "$HOME"/.env/*.sh; do
   source $file
 done
 
-# added by travis gem
-[ -f ~/.travis/travis.sh ] && source /Users/dylan_foster/.travis/travis.sh
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# added by travis gem
+[ -f /Users/dylanfoster/.travis/travis.sh ] && source /Users/dylanfoster/.travis/travis.sh
