@@ -9,6 +9,8 @@ setopt EXTENDED_GLOB
 setopt RM_STAR_SILENT
 setopt null_glob
 
+export PATH=/usr/local/bin:$PATH
+
 # Source environment scripts
 for file in "$HOME"/.env/*.sh; do
   source $file
