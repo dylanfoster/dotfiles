@@ -22,7 +22,7 @@ install_casks() {
   fi
 
   brew cask install \
-    dockertoolbox \
+    docker-toolbox \
     flux \
     iterm2-nightly \
     macdown \
