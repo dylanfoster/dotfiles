@@ -320,6 +320,8 @@ let g:DVB_TrimWS = 1
 " ESLint
 let g:syntastic_javascript_checkers = ['eslint']
 
+let g:syntastic_typescript_checkers = ['tslint']
+
 " FZF
 if !has('nvim')
   let g:fzf_height = 20

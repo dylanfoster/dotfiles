@@ -19,5 +19,5 @@ dlist() {
 }
 
 if [[ -f $DOCKER_ENV ]]; then
-  denv
+#   denv
 fi
