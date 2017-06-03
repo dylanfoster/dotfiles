@@ -36,6 +36,7 @@ endif
 Plug 'airblade/vim-gitgutter'
 Plug 'albfan/nerdtree-git-plugin'
 Plug 'ap/vim-css-color'
+Plug 'benjie/neomake-local-eslint.vim'
 Plug 'bkad/CamelCaseMotion'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'chase/vim-ansible-yaml'
@@ -47,6 +48,7 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elzr/vim-json'
+Plug 'flowtype/vim-flow'
 Plug 'geekjuice/vim-mocha', { 'for': 'javascript' }
 Plug 'gilsondev/searchtasks.vim'
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
@@ -114,6 +116,8 @@ call plug#end()
 if !isdirectory(expand(g:plug_home))
   PlugInstall
 endif
+
+" let g:neomake_verbose = 3
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " User Interface
@@ -319,6 +323,10 @@ let g:DVB_TrimWS = 1
 
 " ESLint
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
+
+" Flow
+let g:flow#enable = 0
 
 let g:syntastic_typescript_checkers = ['tslint']
 
