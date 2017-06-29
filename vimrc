@@ -92,6 +92,7 @@ Plug 'vim-scripts/Crunch'
 Plug 'vim-scripts/directionalWindowResizer'
 Plug 'vim-scripts/bash-support.vim'
 Plug 'vim-scripts/gitignore.vim'
+Plug 'vim-scripts/groovy.vim'
 Plug 'vim-scripts/nginx.vim'
 Plug 'vim-scripts/tComment'
 Plug 'w0ng/vim-hybrid'
@@ -322,6 +323,7 @@ vmap  <expr>  D        DVB_Duplicate()
 let g:DVB_TrimWS = 1
 
 " ESLint
+let g:syntastic_aggregate_errors = 1
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
 
@@ -359,7 +361,12 @@ let g:mustache_abbreviations = 1
 
 " Neomake
 if has('nvim')
+  let g:neomake_typescript_tslint_maker = {
+    \ 'args': ['%:p'],
+    \ 'errorformat': 'ERROR: %f[%l\, %c]: %m',
+    \ }
   let g:neomake_javascript_enabled_makers = ['eslint']
+  let g:neomake_typescript_enabled_makers = ['tslint']
   nmap <leader>t :let g:neomake_javascript_enabled_makers = ['jshint']<cr>:Neomake<cr>
   nmap <leader>f :let g:neomake_javascript_enabled_makers = ['eslint']<cr>:Neomake<cr>
   autocmd! BufWritePost * Neomake
