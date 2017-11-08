@@ -22,12 +22,9 @@ install_casks() {
   fi
 
   brew cask install \
-    docker-toolbox \
     flux \
     iterm2-nightly \
     macdown \
-    seil \
-    vagrant \
     virtualbox
 }
 
