@@ -5,7 +5,7 @@ NODE_VERSION=
 install_node() {
   info "Installing latest Node.js version..."
 
-  n latest
+  n lts
   NODE_VERSION=$(node -v)
   success "Node.js $NODE_VERSION installed"
 }
@@ -28,9 +28,17 @@ if program_exists "npm"; then
 
   npm install -g \
     bower \
+    conventional-changelog-cli \
     ember-cli \
     eslint \
+    eslint-config-unstandard \
     gulp \
+    json \
+    nodemon \
     supervisor \
+    tslint \
+    typescript \
+    vtop \
+    yarn
     yo
 fi
