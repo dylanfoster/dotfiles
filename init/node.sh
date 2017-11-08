@@ -39,6 +39,6 @@ if program_exists "npm"; then
     tslint \
     typescript \
     vtop \
-    yarn
+    yarn \
     yo
 fi

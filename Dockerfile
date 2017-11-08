@@ -9,6 +9,7 @@ RUN sudo apt-get update \
       && sudo apt-get install -y git-core
 
 ADD . /home/vader/dotfiles
+RUN sudo chown -R vader /home/vader
 CMD bash -c /home/vader/dotfiles/install.sh
 
 WORKDIR /home/vader/dotfiles
