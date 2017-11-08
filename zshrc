@@ -17,12 +17,3 @@ for file in "$HOME"/.env/*.sh; do
 done
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# added by travis gem
-[ -f /Users/dylanfoster/.travis/travis.sh ] && source /Users/dylanfoster/.travis/travis.sh
-
-# tabtab source for electron-forge package
-# uninstall by removing these lines or running `tabtab uninstall electron-forge`
-[[ -f /Users/Shared/git/virtucom-desktop/node_modules/tabtab/.completions/electron-forge.zsh ]] && . /Users/Shared/git/virtucom-desktop/node_modules/tabtab/.completions/electron-forge.zsh
-export PATH="$HOME/.fastlane/bin:$PATH"
-
