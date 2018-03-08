@@ -47,7 +47,7 @@ success "Installed apt packages"
 if [[ ! -f "$LINUXBREW" ]]; then
   info "Installing Linuxbrew..."
 
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/linuxbrew/go/install)"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
 fi
 
 # Install Linuxbrew packages

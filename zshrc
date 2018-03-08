@@ -9,7 +9,8 @@ setopt EXTENDED_GLOB
 setopt RM_STAR_SILENT
 setopt null_glob
 
-export PATH=/usr/local/bin:$PATH
+export GOPATH=$HOME/go
+export PATH=/usr/local/bin:$GOPATH/bin:$PATH
 
 # Source environment scripts
 for file in "$HOME"/.env/*.sh; do
@@ -17,3 +18,6 @@ for file in "$HOME"/.env/*.sh; do
 done
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/vault vault

@@ -48,6 +48,7 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elzr/vim-json'
+Plug 'fatih/vim-hclfmt'
 Plug 'flowtype/vim-flow'
 Plug 'geekjuice/vim-mocha', { 'for': 'javascript' }
 Plug 'gilsondev/searchtasks.vim'
@@ -346,6 +347,8 @@ endif
 
 " Gitgutter
 let g:gitgutter_realtime = 0
+let g:gitgutter_log = 0
+let g:gitgutter_enabled = 0
 
 " Hybrid
 
