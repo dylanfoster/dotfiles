@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 is_ubuntu || return 1
 
-LINUXBREW="$HOME/.linuxbrew/bin/brew"
+LINUXBREW="/home/linuxbrew/.linuxbrew/bin/brew"
 
 # Update APT
 info "Updating APT"
@@ -68,3 +68,8 @@ ZSH_BIN="$HOME/.linuxbrew/bin/zsh"
 if [[ "$ZSH_BIN" && $(grep -L "$ZSH_BIN" /etc/shells) ]]; then
   echo "$ZSH_BIN" | sudo tee -a /etc/shells &> /dev/null
 fi
+
+test -d ~/.linuxbrew && PATH="$HOME/.linuxbrew/bin:$HOME/.linuxbrew/sbin:$PATH"
+test -d /home/linuxbrew/.linuxbrew && PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
+test -r ~/.zshrc && echo "export PATH='$(brew --prefix)/bin:$(brew --prefix)/sbin'":'"$PATH"' >>~/.zshrc
+echo "export PATH='$(brew --prefix)/bin:$(brew --prefix)/sbin'":'"$PATH"' >>~/.profile
