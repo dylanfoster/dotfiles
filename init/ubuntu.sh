@@ -62,12 +62,14 @@ $LINUXBREW install \
   zsh
 
 # Shell
-ZSH_BIN="$HOME/.linuxbrew/bin/zsh"
+ZSH_BIN="/home/linuxbrew/.linuxbrew/bin/zsh"
 
 # Add ZSH to list of valid shells
 if [[ "$ZSH_BIN" && $(grep -L "$ZSH_BIN" /etc/shells) ]]; then
   echo "$ZSH_BIN" | sudo tee -a /etc/shells &> /dev/null
 fi
+
+chsh -s /home/linuxbrew/.linuxbrew/bin/zsh
 
 test -d ~/.linuxbrew && PATH="$HOME/.linuxbrew/bin:$HOME/.linuxbrew/sbin:$PATH"
 test -d /home/linuxbrew/.linuxbrew && PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
