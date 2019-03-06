@@ -33,6 +33,7 @@ else
   call plug#begin('~/.config/nvim/plugged')
 endif
 
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'albfan/nerdtree-git-plugin'
 Plug 'ap/vim-css-color'
@@ -62,7 +63,6 @@ Plug 'juvenn/mustache.vim'
 Plug 'kchmck/vim-coffee-script'
 Plug 'keith/swift.vim'
 Plug 'kristijanhusak/vim-hybrid-material'
-Plug 'leafgarland/typescript-vim'
 Plug 'majutsushi/tagbar'
 Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'mattn/emmet-vim'
@@ -71,9 +71,8 @@ Plug 'moll/vim-node'
 Plug 'othree/html5.vim'
 Plug 'othree/yajs.vim'
 Plug 'osyo-manga/vim-over'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'rdolgushin/groovy.vim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'scrooloose/nerdtree'
 Plug 'shime/vim-livedown'
 Plug 'shinokada/dragvisuals.vim'
@@ -111,9 +110,14 @@ endif
 
 if has('nvim')
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  Plug 'drewschrauf/neomake-local-tslint.vim'
   Plug 'benekastah/neomake', { 'commit': 'cfd24b0' }
   Plug 'kassio/neoterm'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+  Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
   Plug 'Shougo/deoplete.nvim'
+  Plug 'Shougo/denite.nvim'
 endif
 
 call plug#end()
@@ -123,6 +127,11 @@ if !isdirectory(expand(g:plug_home))
   PlugInstall
 endif
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Debug
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" let g:neomake_logfile = "/tmp/neomake.log"
+"
 " let g:neomake_verbose = 3
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -233,9 +242,9 @@ set noeol
 
 " Ignore certain files
 set wildignore+=
-  \.git,
-  \*/node_modules,
-  \*/tmp
+      \.git,
+      \*/node_modules,
+      \*/tmp
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File-specific
@@ -273,9 +282,9 @@ map k gk
 
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *
-  \ if line("'\"") > 0 && line("'\"") <= line("$") |
-  \   exe "normal! g`\"" |
-  \ endif
+      \ if line("'\"") > 0 && line("'\"") <= line("$") |
+      \   exe "normal! g`\"" |
+      \ endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Miscellaneous
@@ -327,15 +336,20 @@ vmap  <expr>  D        DVB_Duplicate()
 " Remove any introduced trailing whitespace after moving...
 let g:DVB_TrimWS = 1
 
-" ESLint
 let g:syntastic_aggregate_errors = 1
+" ESLint
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
 
 " Flow
 let g:flow#enable = 0
 
-let g:syntastic_typescript_checkers = ['tslint']
+" TypeScript
+let g:syntastic_typescript_checkers = ['tslint', 'tsc']
+
+if has('nvim')
+  nmap <leader>df :TSTypeDef<CR>
+endif
 
 " FZF
 if !has('nvim')
@@ -343,8 +357,8 @@ if !has('nvim')
   map <C-p> :FZF<CR>
 else
   map <C-p> :call fzf#run({
-  \ 'sink': 'e',
-  \ 'window': 'topleft 20new'})<CR>
+        \ 'sink': 'e',
+        \ 'window': 'topleft 20new'})<CR>
 endif
 
 " Gitgutter
@@ -369,9 +383,9 @@ let g:mustache_abbreviations = 1
 " Neomake
 if has('nvim')
   let g:neomake_typescript_tslint_maker = {
-    \ 'args': ['%:p'],
-    \ 'errorformat': 'ERROR: %f[%l\, %c]: %m',
-    \ }
+        \ 'args': ['%:p', '-t', 'verbose'],
+        \ 'errorformat': 'ERROR: %f[%l\, %c]: %m',
+        \ }
   let g:neomake_javascript_enabled_makers = ['eslint']
   let g:neomake_typescript_enabled_makers = ['tslint']
   nmap <leader>t :let g:neomake_javascript_enabled_makers = ['jshint']<cr>:Neomake<cr>
@@ -383,7 +397,7 @@ endif
 let g:neoterm_shell = "zsh"
 
 " NERDTree
-let NERDTreeIgnore=['coverage', 'node_modules', 'tmp']
+let NERDTreeIgnore=['coverage', 'node_modules', 'tmp$']
 let NERDTreeHijackNetrw = 0
 let NERDTreeShowHidden = 1
 map <silent> <LocalLeader>nt :NERDTreeToggle<CR>
@@ -433,10 +447,10 @@ nnoremap <silent> <Leader>cw :Trim<CR>
 
 " Search & replace
 function! VisualFindAndReplace()
-    :OverCommandLine%s/
+  :OverCommandLine%s/
 endfunction
 function! VisualFindAndReplaceWithSelection() range
-    :'<,'>OverCommandLine s/
+  :'<,'>OverCommandLine s/
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
