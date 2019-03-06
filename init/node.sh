@@ -34,7 +34,12 @@ if program_exists "npm"; then
     eslint-config-unstandard \
     gulp \
     json \
+    jq \
+    neovim \
+    ngrok \
     nodemon \
+    prettier \
+    sloc \
     supervisor \
     tslint \
     typescript \

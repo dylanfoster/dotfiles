@@ -22,10 +22,21 @@ install_casks() {
   fi
 
   brew cask install \
+    abstract \
+    firefox-nightly \
     flux \
+    google-chrome \
+    gpg-suite \
     iterm2-nightly \
     macdown \
-    virtualbox
+    omnigraffle \
+    postman \
+    rbenv \
+    slack \
+    spotify \
+    studio-3t \
+    virtualbox \
+    wkhtmltopdf
 }
 
 # Install Homebrew Recipes
@@ -36,9 +47,12 @@ install_recipes() {
     cloc \
     coreutils \
     git \
+    git-crypt \
     git-extras \
     go \
+    graphicsmagick \
     imagemagick \
+    kubernetes-cli \
     moreutils \
     python3 \
     rename \
