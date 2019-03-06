@@ -31,7 +31,7 @@ install_casks() {
     macdown \
     omnigraffle \
     postman \
-    rbenv \
+    roblox \
     slack \
     spotify \
     studio-3t \
@@ -55,11 +55,12 @@ install_recipes() {
     kubernetes-cli \
     moreutils \
     python3 \
+    rbenv \
     rename \
     the_silver_searcher \
     tmux \
     tree \
-    vim --with-lua \
+    vim \
     watch \
     wget \
     zsh
