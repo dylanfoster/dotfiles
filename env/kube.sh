@@ -1,16 +1,14 @@
 # kubectl
-## preview
-alias kcp="kubectl --namespace preview"
-
-## staging
-alias kcs="kubectl --namespace staging"
-
-## production
-alias kc="kubectl -n production"
-
-## global
-alias kcu="kubectl config use-context"
-
-
-# helm
-alias hcp="helm"
+alias k="kubectl"
+alias kc="k config"
+alias kcu="kc use-context"
+alias kcud="kcu docker-for-desktop"
+alias kcupp="kcu preprod"
+alias kcup="kcu production"
+alias kcpp="k -n preview"
+alias kcps="k -n staging"
+alias kcp="k -n production"
+alias kg="k get"
+alias kgp="kg po"
+alias kgd="kg deploy"
+alias klog="k logs -f"
