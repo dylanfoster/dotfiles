@@ -59,6 +59,7 @@ $LINUXBREW update
 $LINUXBREW install \
   git-extras \
   htop \
+  rbenv \
   tmux \
   vim \
   zsh
