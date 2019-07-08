@@ -111,14 +111,17 @@ endif
 
 if has('nvim')
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  Plug 'drewschrauf/neomake-local-tslint.vim'
-  Plug 'benekastah/neomake', { 'commit': 'cfd24b0' }
+  Plug 'neomake/neomake'
   Plug 'kassio/neoterm'
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
-  Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
+  Plug 'scrooloose/syntastic'
   Plug 'Shougo/deoplete.nvim'
   Plug 'Shougo/denite.nvim'
+  Plug 'Quramy/tsuquyomi'
+  Plug 'Shougo/vimproc.vim', {'do': 'make'}
+  Plug 'rudism/deoplete-tsuquyomi'
+  " Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
 endif
 
 call plug#end()
@@ -339,18 +342,22 @@ let g:DVB_TrimWS = 1
 
 let g:syntastic_aggregate_errors = 1
 " ESLint
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
+" let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
+
+" tsuquyomi
+let g:tsuquyomi_disable_quickfix = 1
+let g:tsuquyomi_completion_detail = 1
 
 " Flow
 let g:flow#enable = 0
 
 " TypeScript
-let g:syntastic_typescript_checkers = ['tslint', 'tsc']
+let g:syntastic_typescript_checkers = ['tslint', 'tsuquyomi']
 
-if has('nvim')
-  nmap <leader>df :TSTypeDef<CR>
-endif
+" if has('nvim')
+"   nmap <leader>df :TSTypeDef<CR>
+" endif
 
 " FZF
 if !has('nvim')
@@ -389,6 +396,9 @@ if has('nvim')
         \ }
   let g:neomake_javascript_enabled_makers = ['eslint']
   let g:neomake_typescript_enabled_makers = ['tslint']
+  let g:neomake_open_list = 1
+  nmap <leader>df :TsuDefinition<CR>
+  nmap <leader>dt :TsuTypeDefinition<CR>
   nmap <leader>t :let g:neomake_javascript_enabled_makers = ['jshint']<cr>:Neomake<cr>
   nmap <leader>f :let g:neomake_javascript_enabled_makers = ['eslint']<cr>:Neomake<cr>
   autocmd! BufWritePost * Neomake

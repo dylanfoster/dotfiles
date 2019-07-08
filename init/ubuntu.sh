@@ -11,6 +11,7 @@ sudo apt-get install -y software-properties-common \
   python-software-properties
 
 sudo add-apt-repository -y ppa:pi-rho/dev
+sudo add-apt-repository -y ppa:neovim-ppa/stable
 sudo apt-get update
 sudo apt-get upgrade -y
 
@@ -30,6 +31,7 @@ sudo apt-get install -y \
   libncurses-dev \
   libncurses5-dev \
   libssl-dev \
+  neovim \
   m4 \
   python-dev \
   python-pip \
