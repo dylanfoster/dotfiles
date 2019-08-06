@@ -17,4 +17,11 @@ if [[ -z "$LANG" ]]; then
 fi
 
 # Utilities
-alias reload='source $HOME/.zshenv'
+reload() {
+  source $HOME/.zshenv
+  source $HOME/.zshrc
+
+  for file in "$HOME"/.env/*.sh; do
+    source $file
+  done
+}

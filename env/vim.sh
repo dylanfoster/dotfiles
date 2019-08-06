@@ -1,1 +1,1 @@
-alias vclean='rm $HOME/.vim/swaps/*; rm $HOME/.vim/swaps/.*'
+alias vclean='rm -rf $HOME/.vim/swaps/*; rm -rf $HOME/.vim/swaps/.*'

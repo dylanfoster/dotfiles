@@ -10,4 +10,4 @@ md() {
   cd "$argv"
 }
 
-unalias rm
+alias rm &> /dev/null && unalias rm
