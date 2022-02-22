@@ -35,6 +35,7 @@ if program_exists "npm"; then
     gulp \
     json \
     jq \
+    lerna \
     neovim \
     ngrok \
     nodemon \

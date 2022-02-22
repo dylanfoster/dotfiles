@@ -23,3 +23,8 @@ autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/vault vault
 
 eval "$(rbenv init -)"
+
+export KOPS_STATE_STORE=s3://cluster-state.travelbank.com
+source <(kubectl completion zsh)
+
+function gam() { "/Users/dylanfoster/bin/gam/gam" "$@" ; }

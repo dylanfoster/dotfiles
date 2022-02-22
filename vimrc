@@ -35,7 +35,6 @@ endif
 
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'airblade/vim-gitgutter'
-Plug 'albfan/nerdtree-git-plugin'
 Plug 'ap/vim-css-color'
 Plug 'benjie/neomake-local-eslint.vim'
 Plug 'bkad/CamelCaseMotion'
@@ -49,11 +48,12 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elzr/vim-json'
-Plug 'marcosnils/vim-hclfmt'
 Plug 'flowtype/vim-flow'
 Plug 'geekjuice/vim-mocha', { 'for': 'javascript' }
 Plug 'gilsondev/searchtasks.vim'
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
+Plug 'hashivim/vim-terraform'
+Plug 'hashivim/vim-packer'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'janko-m/vim-test'
 Plug 'jiangmiao/auto-pairs'
@@ -104,6 +104,7 @@ Plug 'w0ng/vim-hybrid'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
 Plug 'ryanoasis/vim-devicons' " Must load last
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 if !has('nvim')
   Plug 'scrooloose/syntastic'
@@ -116,8 +117,9 @@ if has('nvim')
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
   Plug 'scrooloose/syntastic'
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'Shougo/denite.nvim'
+  Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'Quramy/tsuquyomi'
   Plug 'Shougo/vimproc.vim', {'do': 'make'}
   Plug 'rudism/deoplete-tsuquyomi'
@@ -325,7 +327,7 @@ let g:DevIconsEnableFoldersOpenClose = 1
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#file#enable_buffer_path = 1
+" let g:deoplete#file#enable_buffer_path = 1
 inoremap <expr> <TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : ""
 
@@ -428,6 +430,18 @@ map <silent> <LocalLeader>s :Tagbar<CR>
 
 " TComment
 map <silent> <LocalLeader>cc :TComment<CR>
+
+" Terraform
+let g:terraform_align=1
+let g:terraform_fmt_on_save=1
+
+" packer
+augroup vim.packer.fmt
+  autocmd!
+  autocmd BufWritePost *.pkr.hcl silent! !packer fmt <afile>
+  autocmd BufWritePost * edit
+  autocmd BufWritePost * redraw!
+augroup END
 
 " Test
 nmap <silent> <leader>t :TestNearest<CR>

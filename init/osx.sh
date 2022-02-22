@@ -5,25 +5,26 @@ is_osx || return 1
 # Homebrew                                                                     #
 ################################################################################
 
-# Install Homebrew Cask Plugin
-install_brew_cask() {
-  info "Installing Homebrew Cask Plugin"
+install_optional() {
+  info "Installing optional casks..."
 
-  brew tap phinze/homebrew-cask 2> /dev/null
-  brew install brew-cask 2> /dev/null
+  brew install --cask \
+    abstract \
+    discord \
+    mylio \
+    slack \
+    spotify \
+    studio-3t \
+    telegram \
+    zoom
 }
 
 # Install Homebrew Casks
 install_casks() {
   info "Installing Homebrew casks..."
 
-  if ! brew cask &> /dev/null; then
-    install_brew_cask
-  fi
-
-  brew cask install \
-    abstract \
-    firefox-nightly \
+  brew install --cask \
+    docker \
     flux \
     google-chrome \
     gpg-suite \
@@ -31,10 +32,7 @@ install_casks() {
     macdown \
     omnigraffle \
     postman \
-    roblox \
-    slack \
-    spotify \
-    studio-3t \
+    smcfancontrol \
     virtualbox \
     wkhtmltopdf
 }
@@ -44,6 +42,7 @@ install_recipes() {
   info "Installing Homebrew Recipes..."
 
   brew install \
+    awscli \
     cloc \
     coreutils \
     git \
@@ -51,12 +50,16 @@ install_recipes() {
     git-extras \
     go \
     graphicsmagick \
+    helm \
     imagemagick \
+    kops \
+    kubectl \
     kubernetes-cli \
     moreutils \
     python3 \
     rbenv \
     rename \
+    tfenv \
     the_silver_searcher \
     tmux \
     tree \
@@ -67,6 +70,8 @@ install_recipes() {
 
   brew install --HEAD \
     neovim
+
+  brew tap johanhaleby/kubetail && brew install kubetail
 }
 
 # Install Homebrew
@@ -76,7 +81,7 @@ if ! program_exists "brew"; then
   true | /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
   brew tap neovim/neovim
-  brew tap caskroom/versions
+  brew tap homebrew/cask-versions
   install_casks
   install_recipes
 else
@@ -85,7 +90,7 @@ else
   brew update
 
   brew tap neovim/neovim
-  brew tap caskroom/versions
+  brew tap homebrew/cask-versions
   install_casks
   install_recipes
 fi
@@ -145,6 +150,7 @@ defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 
 # Expand print panel by default
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
@@ -229,9 +235,12 @@ defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
 
 # Disable press-and-hold for keys in favor of key repeat
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+defaults write -g ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate
 defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write -g KeyRepeat -int 1
+defaults write -g InitialKeyRepeat -int 1
 
 # Automatically illuminate built-in MacBook keyboard in low light
 defaults write com.apple.BezelServices kDim -bool true
