@@ -3,6 +3,7 @@ set -e
 
 # Variables
 
+OPTIONAL_ARG=$1
 ALL_FILES=$(ls .)
 DOTFILES_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 DOTIGNORE=$DOTFILES_DIR/.dotignore
@@ -52,6 +53,9 @@ error() {
 is_osx() { [[ "$OSTYPE" =~ ^darwin ]] || return 1; }
 is_ubuntu() {
   [[ "$(cat /etc/lsb-release 2> /dev/null | head -1 2> /dev/null)" =~ Ubuntu ]] || return 1
+}
+is_optional_install() {
+  [[ $OPTIONAL_ARG == "--install-optional" ]] || return 1
 }
 
 program_exists() {
@@ -136,6 +140,8 @@ init(){
 }
 
 # Just do it
+
+is_optional_install
 
 echo
 intro

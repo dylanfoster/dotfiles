@@ -6,6 +6,8 @@ is_osx || return 1
 ################################################################################
 
 install_optional() {
+  is_optional_install || return 1
+
   info "Installing optional casks..."
 
   brew install --cask \
@@ -83,6 +85,7 @@ if ! program_exists "brew"; then
   brew tap neovim/neovim
   brew tap homebrew/cask-versions
   install_casks
+  install_optional
   install_recipes
 else
   info "Updating Homebrew..."
@@ -92,6 +95,7 @@ else
   brew tap neovim/neovim
   brew tap homebrew/cask-versions
   install_casks
+  install_optional
   install_recipes
 fi
 
