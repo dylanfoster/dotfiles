@@ -141,8 +141,6 @@ init(){
 
 # Just do it
 
-is_optional_install
-
 echo
 intro
 echo
