@@ -34,7 +34,7 @@ else
 endif
 
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter', { 'branch': 'main' }
 Plug 'ap/vim-css-color'
 Plug 'benjie/neomake-local-eslint.vim'
 Plug 'bkad/CamelCaseMotion'
@@ -51,6 +51,7 @@ Plug 'elzr/vim-json'
 Plug 'flowtype/vim-flow'
 Plug 'geekjuice/vim-mocha', { 'for': 'javascript' }
 Plug 'gilsondev/searchtasks.vim'
+Plug 'github/copilot.vim', { 'branch': 'release' }
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
 Plug 'hashivim/vim-terraform'
 Plug 'hashivim/vim-packer'
@@ -315,6 +316,9 @@ nmap <leader>wq :wqa!<cr>
 " Airline
 let g:airline_theme = 'luna'
 let g:airline_powerline_fonts = 1
+
+" Copilot
+" let g:copilot_proxy = 'http://eu-webproxyosx.servers.global.prv:8080'
 
 " Devicons
 let g:webdevicons_enable_nerdtree = 1

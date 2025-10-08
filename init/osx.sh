@@ -58,6 +58,7 @@ install_recipes() {
     kubectl \
     kubernetes-cli \
     moreutils \
+    pyenv \
     python3 \
     rbenv \
     rename \
