@@ -30,7 +30,7 @@ install_casks() {
     flux \
     google-chrome \
     gpg-suite \
-    iterm2-nightly \
+    iterm2@nightly \
     macdown \
     omnigraffle \
     postman \
