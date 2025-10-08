@@ -84,7 +84,6 @@ if ! program_exists "brew"; then
   true | /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
   brew tap neovim/neovim
-  brew tap homebrew/cask-versions
   install_casks
   install_optional
   install_recipes
@@ -94,7 +93,6 @@ else
   brew update
 
   brew tap neovim/neovim
-  brew tap homebrew/cask-versions
   install_casks
   install_optional
   install_recipes
